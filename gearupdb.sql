@@ -6,6 +6,8 @@
 -- Generation Time: Dec 03, 2020 at 10:31 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
+create database gearupdb;
+use gearupdb;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
