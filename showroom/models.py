@@ -11,9 +11,8 @@ class Location(models.Model):
 
 class Manufacturer(models.Model):
     """A class to generate a brand
-
     ...
-    
+
     Attributes
     ----------
     name: models.charfield / str
@@ -27,9 +26,8 @@ class Manufacturer(models.Model):
 
 class Products(PolymorphicModel):
     """A class to generate a product
-
     ...
-    
+
     Attributes
     ----------
     name: models.charfield / str
@@ -46,9 +44,8 @@ class Products(PolymorphicModel):
 
 class Car(Products):
     """A class to generate a car
-
     ...
-    
+
     Attributes
     ----------
     mileage: models.IntegerField()
@@ -70,9 +67,8 @@ class Accesories(Products):
 
 class Customer(models.Model):
     """A class to generate a customer
-
     ...
-    
+
     Attributes
     ----------
     name: models.charfield / str
@@ -92,4 +88,3 @@ class Customer(models.Model):
     phone = models.CharField(max_length=15,
                              validators=[MinLengthValidator(8)])
     location = models.ManyToManyField(Location)
-    

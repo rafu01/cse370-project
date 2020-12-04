@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import *
-import inspect
 
 
-# Register your models here.
+admin.site.site_header = 'Adminstration'
+
 admin.site.register(Manufacturer)
 admin.site.register(Car)
 admin.site.register(Accesories)
