@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Brand:
     # Need to do
     ...
@@ -10,7 +12,7 @@ class Products(models.Model):
     """A class to generate a product
 
     ...
-    
+
     Attributes
     ----------
     product_id: models.IntegerField / int
@@ -32,7 +34,7 @@ class Car(Products):
     """A class to generate a car
 
     ...
-    
+
     Attributes
     ----------
     mileage: models.IntegerField()
@@ -44,14 +46,13 @@ class Car(Products):
     engine_no: models.IntegerField()
         unique key
     mileage
-    
+
     """
     mileage = models.IntegerField()
     year = models.CharField(max_length=4)
     model = models.CharField(max_length=50)
     engine_no = models.IntegerField()
-    
-    
+
 
 class Accesories(Products):
     model = models.CharField(max_length=50)

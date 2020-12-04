@@ -7,4 +7,4 @@ def index(request):
 
 
 def car_products(request):
-    return render(request, 'navbar.html')
+    return render(request, 'car-products.html')
