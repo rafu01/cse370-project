@@ -6,16 +6,16 @@ body {
 #hero {
   width: 100%;
   height: 100vh;
-  background-image: url("../../static/img/hero.jpg");
+  background-image: url("../../static/img/car.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  color: #333;
+  color: rgb(255, 255, 255);
 }
 
 @media (min-width: 768px) {
   #hero {
-    background-image: url("../../static/img/hero.jpg");
+    background-image: url("../../static/img/car.jpg");
   }
 }
 
@@ -29,14 +29,14 @@ body {
 }
 
 #navcol-1 {
-  font-size: 13px;
+  font-size: 15px;
   font-family: Montserrat, sans-serif;
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: #222;
+  color: rgb(255, 255, 255);
   padding: 10px;
 }
 
@@ -72,7 +72,7 @@ body {
 .reserve-button:hover,
 .reserve-button:focus,
 .reserve-button:active {
-  background-color: rgba(0, 98, 204, 0) !important;
+  background-color: rgb(255, 255, 255) !important;
   border: 3px solid #fff !important;
   box-shadow: none !important;
 }
@@ -113,66 +113,6 @@ body {
     width: 900px;
     height: 500px;
   }
-}
-
-#stats {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 150px;
-  font-size: 15px;
-}
-
-@media (min-width: 768px) {
-  #stats {
-    width: 600px;
-    margin: 0 auto;
-    margin-bottom: 150px;
-    font-size: 15px;
-  }
-}
-
-#stats .table thead th {
-  text-align: left;
-  padding-left: 0;
-  border-top: 0;
-}
-
-#stats .cell-left {
-  text-align: left;
-  padding-left: 0;
-}
-
-#stats .cell-right {
-  text-align: right;
-  font-weight: bold;
-  padding-right: 0;
-}
-
-#interior {
-  width: 100%;
-  height: 60vh;
-}
-
-@media (min-width: 768px) {
-  #interior {
-    width: 100%;
-    height: 100vh;
-  }
-}
-
-#interior .figure {
-  max-width: 90%;
-}
-
-@media (min-width: 768px) {
-  #interior .figure {
-    max-width: 70%;
-  }
-}
-
-#interior .figure-caption {
-  color: rgb(255, 255, 255);
-  margin-top: 15px;
 }
 
 #caption-title {
