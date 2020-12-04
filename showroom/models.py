@@ -2,12 +2,12 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from polymorphic.models import PolymorphicModel
 
-# Create your models here.
+
 class Location(models.Model):
     street = models.CharField(max_length=50)
     city = models.CharField(max_length=20)
     country = models.CharField(max_length=20)
-    
+
 
 class Manufacturer(models.Model):
     """A class to generate a brand
@@ -22,7 +22,7 @@ class Manufacturer(models.Model):
         location of the brand
     """
     name = models.CharField(max_length=255)
-    location = Location()
+    location = models.ManyToManyField(Location)
 
 
 class Products(PolymorphicModel):
@@ -58,7 +58,7 @@ class Car(Products):
     model: models.CharField()
         model of the car
     """
-    mileage = models.IntegerField()
+    mileage = models.PositiveBigIntegerField()
     year = models.CharField(max_length=4,
                             validators=[MinLengthValidator(4)])
     model = models.CharField(max_length=255)
@@ -86,9 +86,10 @@ class Customer(models.Model):
     password: model
     """
     name = models.CharField(max_length=255)
-    address = Location()
-    phone = models.CharField(max_length=15,
-                             validators=[MinLengthValidator(8)])
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=50,
                                 validators=[MinLengthValidator(8)])
+    phone = models.CharField(max_length=15,
+                             validators=[MinLengthValidator(8)])
+    location = models.ManyToManyField(Location)
+    
