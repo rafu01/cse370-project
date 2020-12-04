@@ -1,20 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Dec 03, 2020 at 10:31 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
-create database gearupdb;
-use gearupdb;
-
--- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 04, 2020 at 07:36 PM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 04, 2020 at 09:27 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -147,7 +136,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-04 17:19:13.652865', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
+(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-04 18:43:47.821991', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
 
 -- --------------------------------------------------------
 
@@ -196,7 +185,14 @@ CREATE TABLE `django_admin_log` (
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
 (1, '2020-12-04 14:07:08.493380', '1', 'Manufacturer object (1)', 1, '[{\"added\": {}}]', 9, 1),
-(2, '2020-12-04 14:08:10.202949', '1', 'Manufacturer object (1)', 3, '', 9, 1);
+(2, '2020-12-04 14:08:10.202949', '1', 'Manufacturer object (1)', 3, '', 9, 1),
+(3, '2020-12-04 18:51:08.601368', '1', 'Car object (1)', 1, '[{\"added\": {}}]', 11, 1),
+(4, '2020-12-04 18:56:26.008326', '2', 'Bugatti Chiron', 1, '[{\"added\": {}}]', 11, 1),
+(5, '2020-12-04 18:58:27.245472', '3', 'Porsche 911', 1, '[{\"added\": {}}]', 11, 1),
+(6, '2020-12-04 19:01:08.640701', '4', 'Dodge Charger 1966', 1, '[{\"added\": {}}]', 11, 1),
+(7, '2020-12-04 19:17:10.963017', '2', 'Bugatti Chiron', 2, '[{\"changed\": {\"fields\": [\"Image url\"]}}]', 11, 1),
+(8, '2020-12-04 19:57:11.757190', '1', 'TOYOTA HARRIER', 3, '', 11, 1),
+(9, '2020-12-04 19:57:13.803851', '5', 'TOYOTA HARRIER', 1, '[{\"added\": {}}]', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -286,7 +282,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('31iuel0aoktxvr6mlqyuk786p1gh29gn', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1klEjh:Au-jaN4agYPusXP3Rt4Z1QJ7S0XnZMtkHva7fJdQTcc', '2020-12-18 17:19:13.654904');
+('31iuel0aoktxvr6mlqyuk786p1gh29gn', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1klEjh:Au-jaN4agYPusXP3Rt4Z1QJ7S0XnZMtkHva7fJdQTcc', '2020-12-18 17:19:13.654904'),
+('f377pxeuy1rczvoc6sd3kdvypnyltm0h', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1klG3X:Hcw0meNtPGT8lqFLljljido3ejurRR2gprAwRoKl_R4', '2020-12-18 18:43:47.824986');
 
 -- --------------------------------------------------------
 
@@ -310,7 +307,17 @@ CREATE TABLE `showroom_car` (
   `mileage` bigint(20) UNSIGNED NOT NULL,
   `year` varchar(4) NOT NULL,
   `model` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `showroom_car`
+--
+
+INSERT INTO `showroom_car` (`products_ptr_id`, `mileage`, `year`, `model`) VALUES
+(2, 50, '2016', 'Bugatti Chiron 2016'),
+(3, 11, '2981', 'Porsche 911'),
+(4, 66, '1966', '1966'),
+(5, 17, '2017', 'ZSU60W');
 
 -- --------------------------------------------------------
 
@@ -387,6 +394,16 @@ CREATE TABLE `showroom_products` (
   `image_url` varchar(2083) NOT NULL,
   `polymorphic_ctype_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `showroom_products`
+--
+
+INSERT INTO `showroom_products` (`id`, `name`, `brand`, `image_url`, `polymorphic_ctype_id`) VALUES
+(2, 'Bugatti Chiron', 'Bugatti', 'https://cdn.motor1.com/images/mgl/QMKkB/s1/bugatti-chiron.jpg', 11),
+(3, 'Porsche 911', 'Porsche', 'https://media.autoexpress.co.uk/image/private/s--8hMZnwlT--/t_content-image-full-desktop@1/v1582104904/autoexpress/2019/12/_1665607.jpg', 11),
+(4, 'Dodge Charger 1966', 'Dodge', 'https://www.wallpaperup.com/uploads/wallpapers/2014/10/25/493651/6318edb1442df10e75ca64c8e31653f6.jpg', 11),
+(5, 'TOYOTA HARRIER', 'TOYOTA', 'http://gijc.jp/wp-content/uploads/2019/11/2017-Toyota-Harrier-Elegance-GR-Sports-4WD-3.jpg', 11);
 
 --
 -- Indexes for dumped tables
@@ -563,7 +580,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -611,7 +628,7 @@ ALTER TABLE `showroom_manufacturer_location`
 -- AUTO_INCREMENT for table `showroom_products`
 --
 ALTER TABLE `showroom_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
