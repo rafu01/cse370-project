@@ -60,6 +60,9 @@ class Car(Products):
                             validators=[MinLengthValidator(4)])
     model = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Accesories(Products):
     model = models.CharField(max_length=255)

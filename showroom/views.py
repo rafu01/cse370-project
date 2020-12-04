@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from .models import *
 
 
 def index(request):
@@ -7,4 +8,9 @@ def index(request):
 
 
 def car_products(request):
-    return render(request, 'car-products.html')
+    cars = Car.objects.all()
+    return render(request, 'car-products.html', {'cars': cars})
+
+
+def login(request):
+    return render(request, 'login.html')

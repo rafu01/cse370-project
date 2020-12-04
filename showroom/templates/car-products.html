@@ -13,45 +13,23 @@
     <main class="page lanidng-page">
         <section style="background:  rgb(13,13,13);color: rgb(13,13,13);">
             <div class="container">
-				<div class="row">
-				<div class="col-lg-4">
-          		<div class="card">
-            	<img class="card-img-top" src="{% static 'img\car.jpg' %}" alt="">
+              <div class="row">
+              
+        {% for car in cars %}
+        <div class="col-lg-4" style="padding-bottom: 30px;">
+          		<div class="card" style="background-color: #353a47; border-radius: 12px;">
+            	<a href="#"><img class="card-img-top" width="288px" height="210px" style="border-radius: 12px 12px 0px 0px;" src="{{car.image_url}}" alt=""></a>
             <div class="card-body">
-              <h5 class="card-title">Car title</h5>
-              <p class="card-text">
-                Car description goes here
+              <a href="#" style="color: white; text-decoration: none; "><h5 class="card-title">{{car.name}}</h5></a>
+              <p class="card-text" style="color: white;">
+                Model: {{car.model}} 
               </p>
-              <a href="#" class="btn btn-info btn-sm">Car link here</a>
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
-          		<div class="card">
-            	<img class="card-img-top" src="{% static 'img\car.jpg' %}" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Car title</h5>
-              <p class="card-text">
-                Car description goes here
-              </p>
-              <a href="#" class="btn btn-info btn-sm">Car link here</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          		<div class="card">
-            	<img class="card-img-top" src="{% static 'img\car.jpg' %}" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Car title</h5>
-              <p class="card-text">
-                Car description goes here
-              </p>
-              <a href="#" class="btn btn-info btn-sm">Car link here</a>
-            </div>
-          </div>
-        </div>
-    </div>
-            </div>
+        {% endfor %}
+      </div>
+      </div>
         </section>
         <section class="portfolio-block skills" style="color: rgb(13,13,13);background: rgb(13,13,13);">
             <div class="container">
