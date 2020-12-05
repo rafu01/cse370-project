@@ -8,18 +8,25 @@
 <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
 </head>
+<style>
+.card:hover{
+transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+</style>
 <body> 
     {% include 'navbar.html' %}
     <main class="page lanidng-page">
         <section style="background:  rgb(13,13,13);color: rgb(13,13,13);">
             <div class="container">
               <div class="row">
-              
         {% for car in cars %}
         <div class="col-lg-4" style="padding-bottom: 30px;">
-          		<div class="card" style="background-color: #353a47; border-radius: 12px;">
-            	<a href="#"><img class="card-img-top" width="288px" height="210px" style="border-radius: 12px 12px 0px 0px;" src="{{car.image_url}}" alt=""></a>
-            <div class="card-body">
+          	<div class="card " style="background-color: #214252; border-radius: 8px;">
+            	<a href="#">
+                    <img class="card-img-top" width="288px" height="230px" style="border-radius: 8px 8px 0px 0px;" src="{{car.image_url}}" alt="">
+                </a>
+            <div class="card-body ">
               <a href="#" style="color: white; text-decoration: none; "><h5 class="card-title">{{car.name}}</h5></a>
               <p class="card-text" style="color: white;">
                 Model: {{car.model}} 
