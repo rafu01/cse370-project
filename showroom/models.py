@@ -46,8 +46,15 @@ class Products(PolymorphicModel):
         link to image for showing the car
     """
     name = models.CharField(max_length=255)
-    brand = models.CharField(max_length=255)
+    price = models.FloatField(default=0, validators=[MinValueValidator(0)])
+    quantity = models.PositiveIntegerField(default=0)
+    year = models.CharField(max_length=4, validators=[
+                            MinLengthValidator(4)], default='####')
     img1 = models.CharField(max_length=2083, default='')
+    img2 = models.CharField(max_length=2083, default='')
+    img3 = models.CharField(max_length=2083, default='')
+    img4 = models.CharField(max_length=2083, default='')
+    img5 = models.CharField(max_length=2083, default='')
 
 
 class Manufacturer(models.Model):
@@ -81,10 +88,7 @@ class Car(Products):
     model: models.CharField()
         model of the car
     """
-    mileage = models.PositiveBigIntegerField()
-    year = models.CharField(max_length=4,
-                            validators=[MinLengthValidator(4)])
-    model = models.CharField(max_length=255)
+    mileage = models.FloatField(default=0, validators=[MinValueValidator(0)])
 
     def __str__(self):
         return self.name
