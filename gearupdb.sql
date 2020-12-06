@@ -1,16 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2020 at 08:00 AM
+-- Generation Time: Dec 06, 2020 at 10:37 AM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
-
+-- PHP Version: 7.4.11
 
 create database gearupdb;
 use gearupdb;
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -141,7 +139,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-04 18:43:47.821991', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
+(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-06 08:55:41.670992', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
 
 -- --------------------------------------------------------
 
@@ -197,7 +195,10 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (6, '2020-12-04 19:01:08.640701', '4', 'Dodge Charger 1966', 1, '[{\"added\": {}}]', 11, 1),
 (7, '2020-12-04 19:17:10.963017', '2', 'Bugatti Chiron', 2, '[{\"changed\": {\"fields\": [\"Image url\"]}}]', 11, 1),
 (8, '2020-12-04 19:57:11.757190', '1', 'TOYOTA HARRIER', 3, '', 11, 1),
-(9, '2020-12-04 19:57:13.803851', '5', 'TOYOTA HARRIER', 1, '[{\"added\": {}}]', 11, 1);
+(9, '2020-12-04 19:57:13.803851', '5', 'TOYOTA HARRIER', 1, '[{\"added\": {}}]', 11, 1),
+(10, '2020-12-06 07:33:09.103075', '2', 'Manufacturer object (2)', 1, '[{\"added\": {}}]', 9, 1),
+(11, '2020-12-06 07:33:11.449792', '2', 'Manufacturer object (2)', 2, '[]', 9, 1),
+(12, '2020-12-06 07:42:20.425045', '3', 'Rahim Kaka', 1, '[{\"added\": {}}]', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (19, 'showroom', '0001_initial', '2020-12-04 11:02:28.001270'),
 (20, 'showroom', '0002_auto_20201204_1306', '2020-12-04 13:06:16.033915'),
 (21, 'showroom', '0003_auto_20201204_1423', '2020-12-04 14:23:31.459336'),
-(22, 'showroom', '0004_auto_20201204_1433', '2020-12-04 14:33:56.916062');
+(22, 'showroom', '0004_auto_20201204_1433', '2020-12-04 14:33:56.916062'),
+(23, 'showroom', '0002_auto_20201206_1536', '2020-12-06 09:36:19.791749');
 
 -- --------------------------------------------------------
 
@@ -288,6 +290,7 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('31iuel0aoktxvr6mlqyuk786p1gh29gn', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1klEjh:Au-jaN4agYPusXP3Rt4Z1QJ7S0XnZMtkHva7fJdQTcc', '2020-12-18 17:19:13.654904'),
+('8dxsrezoxjyq1tqwmrlkzbck8gsruwz1', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1klppV:zMO0CDqmB0zTR5KAQJLSUm-exjIOeoTVUt_x27UClgc', '2020-12-20 08:55:41.676976'),
 ('f377pxeuy1rczvoc6sd3kdvypnyltm0h', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1klG3X:Hcw0meNtPGT8lqFLljljido3ejurRR2gprAwRoKl_R4', '2020-12-18 18:43:47.824986');
 
 -- --------------------------------------------------------
@@ -335,32 +338,8 @@ CREATE TABLE `showroom_customer` (
   `name` varchar(255) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `showroom_customer_location`
---
-
-CREATE TABLE `showroom_customer_location` (
-  `id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `showroom_location`
---
-
-CREATE TABLE `showroom_location` (
-  `id` int(11) NOT NULL,
-  `street` varchar(50) NOT NULL,
-  `city` varchar(20) NOT NULL,
-  `country` varchar(20) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `location` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -371,20 +350,17 @@ CREATE TABLE `showroom_location` (
 
 CREATE TABLE `showroom_manufacturer` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `showroom_manufacturer_location`
+-- Dumping data for table `showroom_manufacturer`
 --
 
-CREATE TABLE `showroom_manufacturer_location` (
-  `id` int(11) NOT NULL,
-  `manufacturer_id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `showroom_manufacturer` (`id`, `name`, `location`) VALUES
+(2, 'Man1', 'N/A'),
+(3, 'Rahim Kaka', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -507,32 +483,10 @@ ALTER TABLE `showroom_customer`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `showroom_customer_location`
---
-ALTER TABLE `showroom_customer_location`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `showroom_customer_location_customer_id_location_id_33bb7fcf_uniq` (`customer_id`,`location_id`),
-  ADD KEY `showroom_customer_lo_location_id_074d70bd_fk_showroom_` (`location_id`);
-
---
--- Indexes for table `showroom_location`
---
-ALTER TABLE `showroom_location`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `showroom_manufacturer`
 --
 ALTER TABLE `showroom_manufacturer`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `showroom_manufacturer_location`
---
-ALTER TABLE `showroom_manufacturer_location`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `showroom_manufacturer_lo_manufacturer_id_location_d90f287b_uniq` (`manufacturer_id`,`location_id`),
-  ADD KEY `showroom_manufacture_location_id_ddd9f429_fk_showroom_` (`location_id`);
 
 --
 -- Indexes for table `showroom_products`
@@ -585,7 +539,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -597,7 +551,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `showroom_customer`
@@ -606,28 +560,10 @@ ALTER TABLE `showroom_customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `showroom_customer_location`
---
-ALTER TABLE `showroom_customer_location`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `showroom_location`
---
-ALTER TABLE `showroom_location`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `showroom_manufacturer`
 --
 ALTER TABLE `showroom_manufacturer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `showroom_manufacturer_location`
---
-ALTER TABLE `showroom_manufacturer_location`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `showroom_products`
@@ -684,20 +620,6 @@ ALTER TABLE `showroom_accesories`
 --
 ALTER TABLE `showroom_car`
   ADD CONSTRAINT `showroom_car_products_ptr_id_b2c5b8d5_fk_showroom_products_id` FOREIGN KEY (`products_ptr_id`) REFERENCES `showroom_products` (`id`);
-
---
--- Constraints for table `showroom_customer_location`
---
-ALTER TABLE `showroom_customer_location`
-  ADD CONSTRAINT `showroom_customer_lo_customer_id_30f98638_fk_showroom_` FOREIGN KEY (`customer_id`) REFERENCES `showroom_customer` (`id`),
-  ADD CONSTRAINT `showroom_customer_lo_location_id_074d70bd_fk_showroom_` FOREIGN KEY (`location_id`) REFERENCES `showroom_location` (`id`);
-
---
--- Constraints for table `showroom_manufacturer_location`
---
-ALTER TABLE `showroom_manufacturer_location`
-  ADD CONSTRAINT `showroom_manufacture_location_id_ddd9f429_fk_showroom_` FOREIGN KEY (`location_id`) REFERENCES `showroom_location` (`id`),
-  ADD CONSTRAINT `showroom_manufacture_manufacturer_id_d6d2ad79_fk_showroom_` FOREIGN KEY (`manufacturer_id`) REFERENCES `showroom_manufacturer` (`id`);
 
 --
 -- Constraints for table `showroom_products`
