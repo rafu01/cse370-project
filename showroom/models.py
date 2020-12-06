@@ -95,4 +95,4 @@ class Car(Products):
 
 
 class Accesories(Products):
-    model = models.CharField(max_length=255)
+    ...
