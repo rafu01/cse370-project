@@ -11,6 +11,7 @@ class CarAdmin(admin.ModelAdmin):
         'name',
         'brand',
         'mileage',
+        'image_url',
         'year',
         'model'
     )
