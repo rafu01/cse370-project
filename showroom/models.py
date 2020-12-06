@@ -26,6 +26,8 @@ class Customer(models.Model):
                                 validators=[MinLengthValidator(8)])
     phone = models.CharField(max_length=15,
                              validators=[MinLengthValidator(8)])
+    credit_info = models.CharField(max_length=12,
+                                   validators=[MinLengthValidator(12)], default='#'*12)
     location = models.CharField(max_length=255, default='N/A')
 
     def __str__(self):
@@ -55,6 +57,9 @@ class Products(PolymorphicModel):
     img3 = models.CharField(max_length=2083, default='')
     img4 = models.CharField(max_length=2083, default='')
     img5 = models.CharField(max_length=2083, default='')
+
+    def __str__(self):
+        return self.name
 
 
 class Manufacturer(models.Model):
@@ -89,9 +94,6 @@ class Car(Products):
         model of the car
     """
     mileage = models.FloatField(default=0, validators=[MinValueValidator(0)])
-
-    def __str__(self):
-        return self.name
 
 
 class Accesories(Products):
