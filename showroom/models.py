@@ -1,20 +1,32 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, MinValueValidator
+from django.contrib.auth.models import User
 from polymorphic.models import PolymorphicModel
 
-class Manufacturer(models.Model):
-    """A class to generate a brand
+
+class Customer(models.Model):
+    """A class to generate a customer
     ...
 
     Attributes
     ----------
     name: models.charfield / str
-        name of the brand
-    location:
-        location of the brand
+        name of the customer
+    address: Location
+        location of a customer
+    phone: int
+        phone number of a customer
+    email: models.EmailField
+        email of a customer
+    password: model
     """
     name = models.CharField(max_length=255)
-    location = models.CharField(max_length=255,default='N/A')
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=50,
+                                validators=[MinLengthValidator(8)])
+    phone = models.CharField(max_length=15,
+                             validators=[MinLengthValidator(8)])
+    location = models.CharField(max_length=255, default='N/A')
 
     def __str__(self):
         return self.name
@@ -35,7 +47,25 @@ class Products(PolymorphicModel):
     """
     name = models.CharField(max_length=255)
     brand = models.CharField(max_length=255)
-    image_url = models.CharField(max_length=2083)
+    img1 = models.CharField(max_length=2083, default='')
+
+
+class Manufacturer(models.Model):
+    """A class to generate a brand
+    ...
+
+    Attributes
+    ----------
+    name: models.charfield / str
+        name of the brand
+    location:
+        location of the brand
+    """
+    name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255, default='N/A')
+
+    def __str__(self):
+        return self.name
 
 
 class Car(Products):
@@ -62,29 +92,3 @@ class Car(Products):
 
 class Accesories(Products):
     model = models.CharField(max_length=255)
-
-
-class Customer(models.Model):
-    """A class to generate a customer
-    ...
-
-    Attributes
-    ----------
-    name: models.charfield / str
-        name of the customer
-    address: Location
-        location of a customer
-    phone: int
-        phone number of a customer
-    email: models.EmailField
-        email of a customer
-    password: model
-    """
-    name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=50,
-                                validators=[MinLengthValidator(8)])
-    phone = models.CharField(max_length=15,
-                             validators=[MinLengthValidator(8)])
-    location = models.CharField(max_length=255,default='N/A')
-
