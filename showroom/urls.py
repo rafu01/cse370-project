@@ -2,9 +2,9 @@ from django.urls import path
 from django.contrib import admin
 from . import views
 
-admin.site.site_header = 'Gear Up Administration'
+admin.site.site_header = 'Admin'
 admin.site.site_title = 'Gear Up Administration'
-admin.site.index_title = 'Welcome to Gear Up Administration'
+admin.site.index_title = 'Dashboard'
 
 urlpatterns = [
     path('', views.index, name='index'),
