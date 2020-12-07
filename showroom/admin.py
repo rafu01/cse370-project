@@ -3,14 +3,13 @@ from .models import *
 
 
 class AccessoriesAdmin(admin.ModelAdmin):
-    list_display = ('name','year','price')
+    list_display = ('name', 'year', 'price')
 
     fields = (
         'name',
         'price',
         'quantity',
         'year',
-        'mileage',
         'description',
         'img1',
         'img2',
@@ -19,15 +18,15 @@ class AccessoriesAdmin(admin.ModelAdmin):
         'img5',
     )
 
-
     # list_editable
     # list_per_page
     # search_fields
     # list_filter
-admin.site.register(Accesories,AccessoriesAdmin)
+admin.site.register(Accesories, AccessoriesAdmin)
+
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('name','email','phone','location')
+    list_display = ('name', 'email', 'phone', 'location')
 
     fields = (
         'name',
@@ -38,16 +37,15 @@ class CustomerAdmin(admin.ModelAdmin):
         'location',
     )
 
-
     # list_editable
     # list_per_page
     # search_fields
     # list_filter
-admin.site.register(Customer,CustomerAdmin)
+admin.site.register(Customer, CustomerAdmin)
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('name','year','price')
+    list_display = ('name', 'year', 'price')
 
     fields = (
         'name',
@@ -62,7 +60,6 @@ class CarAdmin(admin.ModelAdmin):
         'img4',
         'img5',
     )
-
 
     # list_editable
     # list_per_page

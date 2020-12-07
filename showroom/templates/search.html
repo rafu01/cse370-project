@@ -18,35 +18,23 @@
 
 <body>
     {% include 'navbar.html' %}
-    <div class="row" style="color: black;">
-        <div class="col">
-            <div class="card card-body">
-                <form method="GET">
-                    {{myFilter.form}}
-                    <button class="btn btn-primary" type=submit>
-                        submit
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
     <main class="page lanidng-page">
         <section style="background:  rgb(13,13,13);color: rgb(13,13,13);">
             <div class="container">
                 <div class="row">
-                    {% for car in cars %}
+                    {% for product in products %}
                     <div class="col-lg-4" style="padding-bottom: 30px;">
                         <div class="card card-hov" style="background-color: #214252; border-radius: 8px;">
                             <a href="#">
                                 <img class="card-img-top" width="288px" height="230px"
-                                    style="border-radius: 8px 8px 0px 0px;" src="{{car.img1}}" alt="">
+                                    style="border-radius: 8px 8px 0px 0px;" src="{{product.img1}}" alt="">
                             </a>
                             <div class="card-body ">
                                 <a href="#" style="color: white; text-decoration: none; ">
-                                    <h5 class="card-title">{{car.name}}</h5>
+                                    <h5 class="card-title">{{product.name}}</h5>
                                 </a>
                                 <p class="card-text" style="color: white;">
-                                    Model: {{car.year}}
+                                    Model: {{product.year}}
                                 </p>
                             </div>
                         </div>
