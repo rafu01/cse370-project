@@ -6,7 +6,7 @@ admin.site.register(Customer)
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year', 'price')
+    list_display = ('name','year','price')
 
     fields = (
         'name',
