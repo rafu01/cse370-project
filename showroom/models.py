@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.contrib.auth.models import User
+from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
 
@@ -20,6 +21,8 @@ class Customer(models.Model):
         email of a customer
     password: model
     """
+    user = models.OneToOneField(
+        User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=50,
@@ -29,6 +32,10 @@ class Customer(models.Model):
     credit_info = models.CharField(max_length=12,
                                    validators=[MinLengthValidator(12)], blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
+
+    bookings = models.ManyToManyField('Booking', blank=True)
+    product = models.ManyToManyField('Products', blank=True)
+    messages = models.ManyToManyField('MessageEnquiry', blank=True)
 
     def __str__(self):
         return self.name
@@ -50,18 +57,36 @@ class Products(PolymorphicModel):
     name = models.CharField(max_length=255)
     price = models.FloatField(default=0, validators=[
                               MinValueValidator(0)], blank=True)
+    manufacturers = models.ForeignKey(
+        'Manufacturer', on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.PositiveIntegerField(default=0)
     year = models.CharField(max_length=4, validators=[
                             MinLengthValidator(4)])
-    description = models.CharField(max_length=1000, default='', blank=True)
-    img1 = models.CharField(max_length=2083, default='', blank=True)
-    img2 = models.CharField(max_length=2083, default='', blank=True)
-    img3 = models.CharField(max_length=2083, default='', blank=True)
-    img4 = models.CharField(max_length=2083, default='', blank=True)
-    img5 = models.CharField(max_length=2083, default='', blank=True)
+    description = models.TextField(blank=True)
+    image_url1 = models.CharField(max_length=2083, default='', blank=True)
+    image_url2 = models.CharField(max_length=2083, default='', blank=True)
+    image_url3 = models.CharField(max_length=2083, default='', blank=True)
+    image_url4 = models.CharField(max_length=2083, default='', blank=True)
+    image_url5 = models.CharField(max_length=2083, default='', blank=True)
+
+    customers = models.ManyToManyField('Customer', blank=True)
+    bookings = models.ManyToManyField('Booking', blank=True)
 
     def __str__(self):
         return self.name
+
+
+class Booking(models.Model):
+    customers = models.ForeignKey(
+        'Customer', on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(
+        'Products', on_delete=models.SET_NULL, null=True)
+    quantity = models.PositiveIntegerField(default=0)
+    price = models.FloatField(default=0)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'Product:{str(self.product)}\tCustomer: {str(self.customers)}'
 
 
 class Manufacturer(models.Model):
@@ -77,6 +102,7 @@ class Manufacturer(models.Model):
     """
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255, blank=True, null=True)
+    product = models.ManyToManyField('Products', blank=True)
 
     def __str__(self):
         return self.name
@@ -101,3 +127,10 @@ class Car(Products):
 
 class Accesories(Products):
     ...
+
+
+class MessageEnquiry(models.Model):
+    customers = models.ForeignKey(
+        'Customer', on_delete=models.SET_NULL, null=True)
+    query = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
