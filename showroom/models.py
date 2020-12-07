@@ -25,10 +25,10 @@ class Customer(models.Model):
     password = models.CharField(max_length=50,
                                 validators=[MinLengthValidator(8)])
     phone = models.CharField(max_length=15,
-                             validators=[MinLengthValidator(8)])
+                             validators=[MinLengthValidator(8)], blank=True, null=True)
     credit_info = models.CharField(max_length=12,
-                                   validators=[MinLengthValidator(12)], default='#'*12)
-    location = models.CharField(max_length=255, default='N/A')
+                                   validators=[MinLengthValidator(12)], blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -48,15 +48,16 @@ class Products(PolymorphicModel):
         link to image for showing the car
     """
     name = models.CharField(max_length=255)
-    price = models.FloatField(default=0, validators=[MinValueValidator(0)])
+    price = models.FloatField(default=0, validators=[
+                              MinValueValidator(0)], blank=True)
     quantity = models.PositiveIntegerField(default=0)
     year = models.CharField(max_length=4, validators=[
-                            MinLengthValidator(4)], default='####')
-    img1 = models.CharField(max_length=2083, default='')
-    img2 = models.CharField(max_length=2083, default='')
-    img3 = models.CharField(max_length=2083, default='')
-    img4 = models.CharField(max_length=2083, default='')
-    img5 = models.CharField(max_length=2083, default='')
+                            MinLengthValidator(4)])
+    img1 = models.CharField(max_length=2083, default='', blank=True)
+    img2 = models.CharField(max_length=2083, default='', blank=True)
+    img3 = models.CharField(max_length=2083, default='', blank=True)
+    img4 = models.CharField(max_length=2083, default='', blank=True)
+    img5 = models.CharField(max_length=2083, default='', blank=True)
 
     def __str__(self):
         return self.name
@@ -74,7 +75,7 @@ class Manufacturer(models.Model):
         location of the brand
     """
     name = models.CharField(max_length=255)
-    location = models.CharField(max_length=255, default='N/A')
+    location = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -93,7 +94,7 @@ class Car(Products):
     model: models.CharField()
         model of the car
     """
-    mileage = models.FloatField(default=0, validators=[MinValueValidator(0)])
+    mileage = models.FloatField(default=0, validators=[MinValueValidator(0)], blank=True)
 
 
 class Accesories(Products):
