@@ -53,6 +53,7 @@ class Products(PolymorphicModel):
     quantity = models.PositiveIntegerField(default=0)
     year = models.CharField(max_length=4, validators=[
                             MinLengthValidator(4)])
+    description = models.CharField(max_length=1000, default='', blank=True)
     img1 = models.CharField(max_length=2083, default='', blank=True)
     img2 = models.CharField(max_length=2083, default='', blank=True)
     img3 = models.CharField(max_length=2083, default='', blank=True)
@@ -94,7 +95,8 @@ class Car(Products):
     model: models.CharField()
         model of the car
     """
-    mileage = models.FloatField(default=0, validators=[MinValueValidator(0)], blank=True)
+    mileage = models.FloatField(default=0, validators=[
+                                MinValueValidator(0)], blank=True)
 
 
 class Accesories(Products):

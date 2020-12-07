@@ -14,6 +14,7 @@ class CarAdmin(admin.ModelAdmin):
         'quantity',
         'year',
         'mileage',
+        'description',
         'img1',
         'img2',
         'img3',
