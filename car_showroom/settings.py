@@ -32,8 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_interface',
-    'colorfield',
+    'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'car_showroom.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'car_showroom/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
