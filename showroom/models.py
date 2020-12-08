@@ -32,6 +32,7 @@ class Customer(models.Model):
     credit_info = models.CharField(max_length=12,
                                    validators=[MinLengthValidator(12)], blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
+    profile_pic = models.ImageField(null=True)
 
     bookings = models.ManyToManyField('Booking', blank=True)
     product = models.ManyToManyField('Products', blank=True)

@@ -91,6 +91,7 @@ class CustomerAdmin(admin.ModelAdmin):
         'phone',
         'credit_info',
         'location',
+        'profile_pic',
         'bookings',
         'product',
         'messages'
