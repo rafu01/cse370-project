@@ -8,7 +8,7 @@ class CarFilter(django_filters.FilterSet):
 
     class Meta:
         model = Car
-        fields = ('name', 'year', 'mileage')
+        fields = ('name', 'year', 'mileage', 'manufacturers')
 
 
 class AccessoriesFilter(django_filters.FilterSet):
