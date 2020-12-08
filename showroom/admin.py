@@ -26,7 +26,6 @@ class AccessoriesAdmin(admin.ModelAdmin):
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
 
-
     # list_editable
     # list_per_page
     # search_fields
@@ -57,7 +56,6 @@ class CarAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
-
 
     # list_editable
     # list_per_page
@@ -126,7 +124,7 @@ class BookingAdmin(admin.ModelAdmin):
 admin.site.register(Booking, BookingAdmin)
 
 
-class MessageEnquiryAdmin(admin.ModelAdmin):
+class UserMessageAdmin(admin.ModelAdmin):
     list_display = ('date', 'customer')
 
     fields = (
@@ -136,4 +134,4 @@ class MessageEnquiryAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(MessageEnquiry, MessageEnquiryAdmin)
+admin.site.register(UserMessage, UserMessageAdmin)
