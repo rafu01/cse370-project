@@ -1,16 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 07, 2020 at 09:14 PM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 08, 2020 at 06:47 AM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.4.11
 
-
-CREATE DATABASE gearupdb;
-use DATABASE gearupdb;
-
+create database gearupdb;
+use gearupdb;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -118,7 +116,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (49, 'Can add car', 13, 'add_car'),
 (50, 'Can change car', 13, 'change_car'),
 (51, 'Can delete car', 13, 'delete_car'),
-(52, 'Can view car', 13, 'view_car');
+(52, 'Can view car', 13, 'view_car'),
+(53, 'Can add user message', 11, 'add_usermessage'),
+(54, 'Can change user message', 11, 'change_usermessage'),
+(55, 'Can delete user message', 11, 'delete_usermessage'),
+(56, 'Can view user message', 11, 'view_usermessage');
 
 -- --------------------------------------------------------
 
@@ -145,7 +147,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-07 20:13:31.808716', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
+(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-08 05:42:41.137657', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
 
 -- --------------------------------------------------------
 
@@ -216,8 +218,8 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (13, 'showroom', 'car'),
 (8, 'showroom', 'customer'),
 (9, 'showroom', 'manufacturer'),
-(11, 'showroom', 'messageenquiry'),
-(10, 'showroom', 'products');
+(10, 'showroom', 'products'),
+(11, 'showroom', 'usermessage');
 
 -- --------------------------------------------------------
 
@@ -255,7 +257,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (16, 'auth', '0011_update_proxy_permissions', '2020-12-03 08:07:33.516632'),
 (17, 'auth', '0012_alter_user_first_name_max_length', '2020-12-03 08:07:33.608009'),
 (18, 'sessions', '0001_initial', '2020-12-03 08:07:33.705589'),
-(19, 'showroom', '0001_initial', '2020-12-07 20:13:04.878439');
+(19, 'showroom', '0001_initial', '2020-12-07 20:13:04.878439'),
+(20, 'showroom', '0002_auto_20201208_1035', '2020-12-08 04:36:08.819863');
 
 -- --------------------------------------------------------
 
@@ -274,6 +277,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('0vdjio2rnwu7iieokpdl1gjyep3rrxe4', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kmVlp:9xC_eScMtlaR-z1kl8_tIgq7wxi9Ncf3WkrxzGjyrsc', '2020-12-22 05:42:41.146693'),
 ('mutbz84yit072rheoq6iom73gvplwmsf', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kmMt1:_SLd_iI9BiRN-nR8R6wcDEN6sOAIPo7zxi1we-naJKc', '2020-12-21 20:13:31.810286');
 
 -- --------------------------------------------------------
@@ -350,7 +354,7 @@ CREATE TABLE `showroom_customer_bookings` (
 CREATE TABLE `showroom_customer_messages` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `messageenquiry_id` int(11) NOT NULL
+  `usermessage_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -387,19 +391,6 @@ CREATE TABLE `showroom_manufacturer_product` (
   `id` int(11) NOT NULL,
   `manufacturer_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `showroom_messageenquiry`
---
-
-CREATE TABLE `showroom_messageenquiry` (
-  `id` int(11) NOT NULL,
-  `query` longtext NOT NULL,
-  `date` datetime(6) NOT NULL,
-  `customers_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -446,6 +437,19 @@ CREATE TABLE `showroom_products_customers` (
   `id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `showroom_usermessage`
+--
+
+CREATE TABLE `showroom_usermessage` (
+  `id` int(11) NOT NULL,
+  `query` longtext NOT NULL,
+  `date` datetime(6) NOT NULL,
+  `customers_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -566,8 +570,8 @@ ALTER TABLE `showroom_customer_bookings`
 --
 ALTER TABLE `showroom_customer_messages`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `showroom_customer_messag_customer_id_messageenqui_8c74e532_uniq` (`customer_id`,`messageenquiry_id`),
-  ADD KEY `showroom_customer_me_messageenquiry_id_b6b30248_fk_showroom_` (`messageenquiry_id`);
+  ADD UNIQUE KEY `showroom_customer_messag_customer_id_messageenqui_8c74e532_uniq` (`customer_id`,`usermessage_id`),
+  ADD KEY `showroom_customer_me_messageenquiry_id_b6b30248_fk_showroom_` (`usermessage_id`);
 
 --
 -- Indexes for table `showroom_customer_product`
@@ -590,13 +594,6 @@ ALTER TABLE `showroom_manufacturer_product`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `showroom_manufacturer_pr_manufacturer_id_products_ef2af489_uniq` (`manufacturer_id`,`products_id`),
   ADD KEY `showroom_manufacture_products_id_44d06878_fk_showroom_` (`products_id`);
-
---
--- Indexes for table `showroom_messageenquiry`
---
-ALTER TABLE `showroom_messageenquiry`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `showroom_messageenqu_customers_id_d8ebf3b6_fk_showroom_` (`customers_id`);
 
 --
 -- Indexes for table `showroom_products`
@@ -623,6 +620,13 @@ ALTER TABLE `showroom_products_customers`
   ADD KEY `showroom_products_cu_customer_id_43d2ee4e_fk_showroom_` (`customer_id`);
 
 --
+-- Indexes for table `showroom_usermessage`
+--
+ALTER TABLE `showroom_usermessage`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `showroom_messageenqu_customers_id_d8ebf3b6_fk_showroom_` (`customers_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -642,7 +646,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -678,7 +682,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `showroom_booking`
@@ -723,12 +727,6 @@ ALTER TABLE `showroom_manufacturer_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `showroom_messageenquiry`
---
-ALTER TABLE `showroom_messageenquiry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `showroom_products`
 --
 ALTER TABLE `showroom_products`
@@ -744,6 +742,12 @@ ALTER TABLE `showroom_products_bookings`
 -- AUTO_INCREMENT for table `showroom_products_customers`
 --
 ALTER TABLE `showroom_products_customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `showroom_usermessage`
+--
+ALTER TABLE `showroom_usermessage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -821,7 +825,7 @@ ALTER TABLE `showroom_customer_bookings`
 --
 ALTER TABLE `showroom_customer_messages`
   ADD CONSTRAINT `showroom_customer_me_customer_id_4e7c8eff_fk_showroom_` FOREIGN KEY (`customer_id`) REFERENCES `showroom_customer` (`id`),
-  ADD CONSTRAINT `showroom_customer_me_messageenquiry_id_b6b30248_fk_showroom_` FOREIGN KEY (`messageenquiry_id`) REFERENCES `showroom_messageenquiry` (`id`);
+  ADD CONSTRAINT `showroom_customer_me_usermessage_id_57b6c132_fk_showroom_` FOREIGN KEY (`usermessage_id`) REFERENCES `showroom_usermessage` (`id`);
 
 --
 -- Constraints for table `showroom_customer_product`
@@ -836,12 +840,6 @@ ALTER TABLE `showroom_customer_product`
 ALTER TABLE `showroom_manufacturer_product`
   ADD CONSTRAINT `showroom_manufacture_manufacturer_id_7d836ce9_fk_showroom_` FOREIGN KEY (`manufacturer_id`) REFERENCES `showroom_manufacturer` (`id`),
   ADD CONSTRAINT `showroom_manufacture_products_id_44d06878_fk_showroom_` FOREIGN KEY (`products_id`) REFERENCES `showroom_products` (`id`);
-
---
--- Constraints for table `showroom_messageenquiry`
---
-ALTER TABLE `showroom_messageenquiry`
-  ADD CONSTRAINT `showroom_messageenqu_customers_id_d8ebf3b6_fk_showroom_` FOREIGN KEY (`customers_id`) REFERENCES `showroom_customer` (`id`);
 
 --
 -- Constraints for table `showroom_products`
@@ -863,6 +861,12 @@ ALTER TABLE `showroom_products_bookings`
 ALTER TABLE `showroom_products_customers`
   ADD CONSTRAINT `showroom_products_cu_customer_id_43d2ee4e_fk_showroom_` FOREIGN KEY (`customer_id`) REFERENCES `showroom_customer` (`id`),
   ADD CONSTRAINT `showroom_products_cu_products_id_45da5cdd_fk_showroom_` FOREIGN KEY (`products_id`) REFERENCES `showroom_products` (`id`);
+
+--
+-- Constraints for table `showroom_usermessage`
+--
+ALTER TABLE `showroom_usermessage`
+  ADD CONSTRAINT `showroom_messageenqu_customers_id_d8ebf3b6_fk_showroom_` FOREIGN KEY (`customers_id`) REFERENCES `showroom_customer` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -35,7 +35,7 @@ class Customer(models.Model):
 
     bookings = models.ManyToManyField('Booking', blank=True)
     product = models.ManyToManyField('Products', blank=True)
-    messages = models.ManyToManyField('MessageEnquiry', blank=True)
+    messages = models.ManyToManyField('UserMessage', blank=True)
 
     def __str__(self):
         return self.name
@@ -129,7 +129,7 @@ class Accesories(Products):
     ...
 
 
-class MessageEnquiry(models.Model):
+class UserMessage(models.Model):
     customers = models.ForeignKey(
         'Customer', on_delete=models.SET_NULL, null=True)
     query = models.TextField()

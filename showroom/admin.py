@@ -120,7 +120,7 @@ class BookingAdmin(admin.ModelAdmin):
     
 admin.site.register(Booking, BookingAdmin)
 
-class MessageEnquiryAdmin(admin.ModelAdmin):
+class UserMessageAdmin(admin.ModelAdmin):
     list_display = ('date', 'customer')
     
     fields = (
@@ -130,4 +130,4 @@ class MessageEnquiryAdmin(admin.ModelAdmin):
     )
     
 
-admin.site.register(MessageEnquiry, MessageEnquiryAdmin)
+admin.site.register(UserMessage, UserMessageAdmin)
