@@ -83,24 +83,36 @@ cancel_discount_on_accessories.short_description = 'Cancel 10%% discount on sele
 
 class AccessoriesAdmin(admin.ModelAdmin):
     list_display = ('name', 'year','manufacturers', 'price')
-
-    fields = (
-        'name',
-        'price',
-        'manufacturers',
-        'quantity',
-        'year',
-        'description',
-        'image_url1',
-        'image_url2',
-        'image_url3',
-        'image_url4',
-        'image_url5',
-        'customers',
-        'bookings'
+    fieldsets = (
+        ("Accessories Details",{
+            "fields":(
+                ('name','manufacturers'),
+                ('year','price'),
+                'description',
+            )
+        }),
+        ("Photos",{
+            "fields":(
+                'image_url1',
+                'image_url2',
+                'image_url3',
+                'image_url4',
+                'image_url5',
+            )
+        }),
+        ("Stock",{
+            "fields":(
+                'quantity',
+            )
+        }),
+        ("Others",{
+            "fields":(
+                ('bookings','customers',),
+            )
+        })
     )
     list_per_page = 10
-    search_fields = ('name','year','price')
+    search_fields = ('name','year','price','manufacturers__name',)
     list_editable = ('price',)
     actions = [apply_discount_on_accessories,cancel_discount_on_accessories,export_to_CSV_Accessories]
     formfield_overrides = {
@@ -109,26 +121,43 @@ class AccessoriesAdmin(admin.ModelAdmin):
 admin.site.register(Accesories, AccessoriesAdmin)
 
 class CarAdmin(admin.ModelAdmin):
-    fields = (
-        'name',
-        'price',
-        'manufacturers',
-        'quantity',
-        'year',
-        'mileage',
-        'description',
-        'image_url1',
-        'image_url2',
-        'image_url3',
-        'image_url4',
-        'image_url5',
-        'customers',
-        'bookings'
+    fieldsets = (
+        ("Car Details",{
+            "fields":(
+                ('name','manufacturers'),
+                ('mileage','price'),
+                'year',
+                'description',
+            )
+        }),
+        ("Photos",{
+            "fields":(
+                'image_url1',
+                'image_url2',
+                'image_url3',
+                'image_url4',
+                'image_url5',
+            )
+        }),
+        ("Stock",{
+            "fields":(
+                'quantity',
+            )
+        }),
+        ("Others",{
+            "fields":(
+                ('bookings','customers',),
+            )
+        })
     )
     list_display = ('name', 'year','manufacturers', 'price')
     list_per_page = 10
-    search_fields = ('year','price','name',)
+    search_fields = ('year','price','name','manufacturers__name',)
+    list_editable = ('price',)
     actions = [apply_discount_on_cars,cancel_discount_on_cars,export_to_CSV_Cars]
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 admin.site.register(Car, CarAdmin)
 
 
@@ -140,7 +169,7 @@ class ManufacturerAdmin(admin.ModelAdmin):
         'product'
     )
     list_per_page = 10
-    search_fields = ('name','location')
+    search_fields = ('name','location',)
     actions = [export_to_CSV_Manufacturers]
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
@@ -151,20 +180,33 @@ admin.site.register(Manufacturer, ManufacturerAdmin)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone', 'location')
 
-    fields = (
-        'name',
-        'email',
-        'password',
-        'phone',
-        'credit_info',
-        'location',
-        'profile_pic',
-        'bookings',
-        'product',
-        'messages'
+    fieldsets = (
+        ("Personal Details",{
+            "fields":(
+                ('name','phone',),
+                'location',
+                'profile_pic',
+            )
+        }),
+        ("GearUp Credentials",{
+            "fields":(
+                ('email','password',),
+            )
+        }),
+        ("Payment Details",{
+            "fields":(
+                'credit_info',
+            )
+        }),
+        ("Others",{
+            "fields":(
+                ('bookings','product',),
+                'messages',
+            )
+        })
     )
     list_per_page = 10
-    search_fields = ('name','phone',)
+    search_fields = ('name','phone','email',)
     actions = [export_to_CSV_Customers,]
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
