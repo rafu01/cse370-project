@@ -225,7 +225,6 @@ class BookingAdmin(admin.ModelAdmin):
         'price',
         'date'
     )
-
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
@@ -233,11 +232,13 @@ admin.site.register(Booking, BookingAdmin)
 
 
 class UserMessageAdmin(admin.ModelAdmin):
-    list_display = ('date', 'customer')
-
+    list_display = ('customers','query','reply','date')
     fields = (
         'customers',
-        'query',
+        ('query','reply',),
         'date'
     )
+    list_per_page = 10
+    list_editable = ('query','reply',)
+    ordering = ['date']
 admin.site.register(UserMessage, UserMessageAdmin)

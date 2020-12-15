@@ -130,7 +130,7 @@ class Accesories(Products):
 
 
 class UserMessage(models.Model):
-    customers = models.ForeignKey(
-        'Customer', on_delete=models.SET_NULL, null=True)
+    customers = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
     query = models.TextField()
+    reply = models.TextField(default=None)
     date = models.DateTimeField(default=timezone.now)
