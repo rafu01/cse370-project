@@ -122,8 +122,7 @@ class Car(Products):
     model: models.CharField()
         model of the car
     """
-    mileage = models.FloatField(default=0, validators=[
-                                MinValueValidator(0)], blank=True)
+    mileage = models.FloatField(default=0, validators=[MinValueValidator(0)], blank=True)
 
 
 class Accesories(Products):
