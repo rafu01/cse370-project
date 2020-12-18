@@ -76,6 +76,8 @@ class Products(PolymorphicModel):
     def __str__(self):
         return self.name
 
+    
+
 
 class Booking(models.Model):
     customers = models.ForeignKey(
@@ -123,10 +125,13 @@ class Car(Products):
         model of the car
     """
     mileage = models.FloatField(default=0, validators=[MinValueValidator(0)], blank=True)
+    def typeOf(self):
+        return 'Car'
 
 
 class Accesories(Products):
-    ...
+    def typeOf(self):
+        return 'Accessory'
 
 
 class UserMessage(models.Model):

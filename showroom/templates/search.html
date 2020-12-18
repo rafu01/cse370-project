@@ -25,18 +25,35 @@
                     {% for product in products %}
                     <div class="col-lg-4" style="padding-bottom: 30px;">
                         <div class="card card-hov" style="background-color: #214252; border-radius: 8px;">
-                            <a href="#">
+                            {% if product.typeOf == 'Car' %}
+                            <a href="{% url 'car' product.id %}">
                                 <img class="card-img-top" width="288px" height="230px"
                                     style="border-radius: 8px 8px 0px 0px;" src="{{product.image_url1}}" alt="">
                             </a>
+                            {% else %}
+                            <a href="{% url 'accessory' product.id %}">
+                                <img class="card-img-top" width="288px" height="230px"
+                                    style="border-radius: 8px 8px 0px 0px;" src="{{product.image_url1}}" alt="">
+                            </a>
+                            {% endif %}
                             <div class="card-body ">
-                                <a href="#" style="color: white; text-decoration: none; ">
+                                {% if product.typeOf == 'Car' %}
+                                    <a href="{% url 'car' product.id %}" style="color: white; text-decoration: none; ">
+                                        <h5 class="card-title">{{product.name}}</h5>
+                                    </a>
+                                    <p class="card-text" style="color: white;">
+                                        Model: {{product.year}}
+                                    </p>
+                                {% else %}
+                                <a href="{% url 'accessory' product.id %}" style="color: white; text-decoration: none; ">
                                     <h5 class="card-title">{{product.name}}</h5>
                                 </a>
                                 <p class="card-text" style="color: white;">
                                     Model: {{product.year}}
                                 </p>
+                                {% endif %}
                             </div>
+                            {{product.typeOf}}
                         </div>
                     </div>
                     {% endfor %}
