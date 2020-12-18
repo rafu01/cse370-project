@@ -216,10 +216,10 @@ admin.site.register(Customer, CustomerAdmin)
 
 class BookingAdmin(admin.ModelAdmin):
     readonly_files = ('date',)
-    list_display = ('customer', 'product', 'quantity', 'date')
+    list_display = ('customers', 'product', 'quantity', 'date')
 
     fields = (
-        'customer',
+        'customers',
         'product',
         'quantity',
         'price',
