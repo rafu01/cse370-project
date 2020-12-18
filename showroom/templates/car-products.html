@@ -32,11 +32,11 @@
     </div>
     <main class="page lanidng-page">
         <section style="background:  rgb(13,13,13);color: rgb(13,13,13);">
-            <div class="container">
+            <div class="container" style="padding-top: 20px;">
                 <div class="row">
                     {% for car in cars %}
                     <div class="col-lg-4" style="padding-bottom: 30px;">
-                        <div class="card card-hov" style="background-color: #214252; border-radius: 8px;">
+                        <div class="card card-hov" style="background-color: #214252; border-radius: 8px; height:380px">
                             <a href="{% url 'car' car.id %}">
                                 <img class="card-img-top" width="288px" height="230px"
                                     style="border-radius: 8px 8px 0px 0px;" src="{{car.image_url1}}" alt="">

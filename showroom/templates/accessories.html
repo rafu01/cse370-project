@@ -35,8 +35,8 @@
             <div class="container">
                 <div class="row">
                     {% for acs in accessories %}
-                    <div class="col-lg-4" style="padding-bottom: 30px;">
-                        <div class="card card-hov" style="background-color: #214252; border-radius: 8px;">
+                    <div class="col-lg-4" style="padding-bottom: 30px;padding-top: 30px;">
+                        <div class="card card-hov" style="background-color: #214252; border-radius: 8px;height: 550px">
                             <a href="{% url 'accessory' acs.id %}">
                                 <img class="card-img-top" width="288px" height="230px"
                                     style="border-radius: 8px 8px 0px 0px;" src="{{acs.image_url1}}" alt="">
