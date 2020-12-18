@@ -3,7 +3,7 @@ from django.core.validators import MinLengthValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.utils import timezone
 from polymorphic.models import PolymorphicModel
-
+from math import ceil
 
 class Customer(models.Model):
     """A class to generate a customer
@@ -76,6 +76,8 @@ class Products(PolymorphicModel):
     def __str__(self):
         return self.name
 
+    def to_int(self):
+        return ceil(self.price)
     
 
 
