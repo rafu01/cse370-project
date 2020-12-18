@@ -19,6 +19,7 @@ def car_products(request):
 def login(request):
     return render(request, 'login.html')
 
+
 def signup(request):
     return render(request, 'signup.html')
 
@@ -45,3 +46,15 @@ def accessories(request):
     accessories = myFilter.qs
     context = {'accessories': accessories, 'myFilter': myFilter}
     return render(request, 'accessories.html', context)
+
+
+def singlecar(request, pk):
+    product = Car.objects.get(id=pk)
+    context = {'product': product}
+    return render(request, 'single-product.html', context)
+
+
+def singleaccessory(request, pk):
+    product = Accesories.objects.get(id=pk)
+    context = {'product': product}
+    return render(request, 'single-product.html', context)
