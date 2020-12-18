@@ -50,7 +50,7 @@
                         <p class="price">
                             Price: {{product.price}} BDT
                         </p>
-                        <p> Availability: </p>
+                        <p> Availability: {% if product.quantity == 0 %} Out of Stock {% else %} Available {% endif %}</p>
                         <p> Description: <br>{{product.description}}</p>
                         <p> Brand: {{product.manufacturers}}</p>
                         <button class="btn btn-info"> Add to Cart </button>&nbsp;&nbsp;<button class="btn btn-warning"> Buy Now </button>
