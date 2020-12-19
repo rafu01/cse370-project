@@ -5,6 +5,7 @@ from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 from math import ceil
 
+
 class Customer(models.Model):
     """A class to generate a customer
     ...
@@ -32,11 +33,14 @@ class Customer(models.Model):
     credit_info = models.CharField(max_length=12,
                                    validators=[MinLengthValidator(12)], blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
-    profile_pic = models.ImageField(null=True,upload_to = "static/img/user_dp")
+    profile_pic = models.ImageField(null=True, upload_to="static/img/user_dp")
 
     bookings = models.ManyToManyField('Booking', blank=True)
     product = models.ManyToManyField('Products', blank=True)
     messages = models.ManyToManyField('UserMessage', blank=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -78,7 +82,6 @@ class Products(PolymorphicModel):
 
     def to_int(self):
         return ceil(self.price)
-    
 
 
 class Booking(models.Model):
@@ -126,7 +129,9 @@ class Car(Products):
     model: models.CharField()
         model of the car
     """
-    mileage = models.FloatField(default=0, validators=[MinValueValidator(0)], blank=True)
+    mileage = models.FloatField(default=0, validators=[
+                                MinValueValidator(0)], blank=True)
+
     def typeOf(self):
         return 'Car'
 
@@ -137,7 +142,8 @@ class Accesories(Products):
 
 
 class UserMessage(models.Model):
-    customers = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
+    customers = models.ForeignKey(
+        'Customer', on_delete=models.SET_NULL, null=True)
     query = models.TextField()
     reply = models.TextField(default=None)
     date = models.DateTimeField(default=timezone.now)

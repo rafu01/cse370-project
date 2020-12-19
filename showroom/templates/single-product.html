@@ -51,8 +51,8 @@
                             Price: {{product.to_int}} BDT
                         </p>
                         <p><span style="font-weight: bold;">Status:  </span>
-                        {% if product.quantity == 0 %}<span style="color: red;">Out of Stock</span></p>
-                        {% else %}<span style="color: green;">Available</span></p>
+                        {% if product.quantity == 0 %}<span style="color: #dc3545;">Out of Stock</span></p>
+                        {% else %}<span style="color:#5bc0de;">Available</span></p>
                         {% endif %}
                         <p><span style="font-weight: bold;">Description:</span><br>{{product.description}}</p>
                         <p><span style="font-weight: bold;">Brand:</span> {{product.manufacturers}}</p>

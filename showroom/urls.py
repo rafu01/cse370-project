@@ -16,5 +16,6 @@ urlpatterns = [
     path('s/', views.search, name='search'),
     path('accessories', views.accessories, name='accessories'),
     path('car/<str:pk>/', views.singlecar, name='car'),
-    path('accessory/<str:pk>/', views.singleaccessory, name='accessory')
+    path('accessory/<str:pk>/', views.singleaccessory, name='accessory'),
+    path('contact-us', views.contact_us, name='contact'),
 ]

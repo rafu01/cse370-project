@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
 from .filters import *
+from django.contrib.auth.models import User, auth
+from django.contrib import messages
 
 
 def index(request):
@@ -17,11 +19,38 @@ def car_products(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        customer = Customer.objects.get(email=email)
+        if customer.password == password:
+            print('success')
+            return redirect(index)
+        else:
+            messages.info(request, 'invalid email or password')
+            print('failed')
+            return redirect('login')
+    else:
+        return render(request, 'login.html')
 
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if Customer.objects.filter(email=email).exists():
+            messages.info(request, 'email already exists!')
+            return redirect('signup')
+        else:
+            user = Customer(password=password1, email=email,
+                            name=name, phone=phone)
+            user.save()
+            return redirect('login')
+    else:
+        return render(request, 'signup.html')
 
 
 def search(request):
@@ -58,3 +87,7 @@ def singleaccessory(request, pk):
     product = Accesories.objects.get(id=pk)
     context = {'product': product}
     return render(request, 'single-product.html', context)
+
+
+def contact_us(request):
+    return render(request, 'contact_us.html')
