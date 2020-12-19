@@ -5,7 +5,7 @@
     {% include 'importcss.html' %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-    <nav class="navbar navbar-light navbar-expand-md" style="background: rgba(0, 0, 0, 0.2)">
+    <nav class="navbar navbar-light navbar-expand-md" style="background: rgba(0, 0, 0, 0.6)">
     <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1" style="padding-left: 0;padding-right: 30px;">
             <a href="{% url 'index' %}" style="color: rgb(255, 255, 255);font-size: 26px;font-style: normal;font-weight: bold;font-family: Montserrat, sans-serif;text-align: center; text-decoration: none;">GEAR UP</a>
@@ -17,18 +17,34 @@
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
+                <style>
+                    button#searchButton i{
+                        opacity: 0.7;    
+                    }  
+                    button#searchButton i:hover{
+                        opacity: 1;
+                    }
+                  </style>
                 <form class="form-inline" action="/s/">
                     <input class="form-control form-control-sm ml-3 w-90" style="border-radius: 15px;" type="text" name="search" placeholder="Search products"
                       aria-label="Search"> &nbsp;&nbsp;
-                      <button class="btn" style="color: white;">
+                      <button id="searchButton" class="btn" style="color: white;">
                         <i class="fa fa-search" aria-hidden="true"></i>
                       </button>
                 </form>
                 <ul class="nav navbar-nav navbar">
-                    <li class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'car-products' %}">Cars</a></li>
-                    <li class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'accessories' %}">Accessories</a></li>
-                    <li class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'signup' %}">Sign Up</a></li>
-                    <li class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'login' %}">Login</a></li>
+                    <style>
+                        li#navbar a {
+                            opacity: 0.7;
+                        }
+                        li#navbar a:hover {
+                            opacity: 1;
+                        }
+                    </style>
+                    <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'car-products' %}">Cars</a></li>
+                    <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'accessories' %}">Accessories</a></li>
+                    <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'signup' %}">Sign Up</a></li>
+                    <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'login' %}">Login</a></li>
                 </ul>
         </div>
      </nav>
