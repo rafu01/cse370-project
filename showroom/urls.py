@@ -18,5 +18,6 @@ urlpatterns = [
     path('car/<str:pk>/', views.singlecar, name='car'),
     path('accessory/<str:pk>/', views.singleaccessory, name='accessory'),
     path('contact-us', views.contact_us, name='contact'),
-    path('about-us', views.about_us, name='about-us')
+    path('about-us', views.about_us, name='about-us'),
+    path('logout',views.logout, name='logout')
 ]

@@ -17,6 +17,16 @@ def car_products(request):
     context = {'cars': cars, 'myFilter': myFilter}
     return render(request, 'car-products.html', context)
 
+def logout(request):
+    if request.method == 'POST':    
+        email = request.POST['email']
+        customer = Customer.objects.get(email=email)
+        customer.is_logged_in = 0
+        customer.save()
+        return redirect('index')
+    else:
+        return redirect('index')
+
 
 def login(request):
     if request.method == 'POST':
@@ -25,7 +35,10 @@ def login(request):
         customer = Customer.objects.get(email=email)
         if customer.password == password:
             print('success')
-            return redirect(index)
+            customer.is_logged_in = 1
+            customer.save()
+            user = {'customer':customer}
+            return render(request,'index.html',user)
         else:
             messages.info(request, 'invalid email or password')
             print('failed')

@@ -38,6 +38,7 @@ class Customer(models.Model):
     bookings = models.ManyToManyField('Booking', blank=True)
     product = models.ManyToManyField('Products', blank=True)
     messages = models.ManyToManyField('UserMessage', blank=True)
+    is_logged_in = models.BooleanField('isLoggedIn',blank=False, default=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

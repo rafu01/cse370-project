@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2020 at 07:11 PM
+-- Generation Time: Dec 20, 2020 at 02:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -143,7 +143,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-15 05:25:28.890676', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
+(1, 'pbkdf2_sha256$216000$za3vSuuD0sOh$2Q7Jn1OAE7pJnAGfQFOmY81LmoRE3xEwnwnUSrtKIU4=', '2020-12-20 12:46:30.302221', 1, 'admin', '', '', 'admin@g.bracu.ac.bd', 1, 1, '2020-12-03 08:15:19.779631');
 
 -- --------------------------------------------------------
 
@@ -327,7 +327,13 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (134, '2020-12-15 08:44:41.806280', '40', 'ROCK UNIVERSAL NON ALCOHOL LUXURY ZEOLITE STONE NATURAL FRAGRANCE', 2, '[{\"changed\": {\"fields\": [\"Price\"]}}]', 13, 1),
 (135, '2020-12-15 08:44:46.944265', '40', 'ROCK UNIVERSAL NON ALCOHOL LUXURY ZEOLITE STONE NATURAL FRAGRANCE', 2, '[{\"changed\": {\"fields\": [\"Price\"]}}]', 13, 1),
 (136, '2020-12-15 17:56:36.588608', '1', 'UserMessage object (1)', 1, '[{\"added\": {}}]', 9, 1),
-(137, '2020-12-15 18:01:17.835924', '2', 'UserMessage object (2)', 1, '[{\"added\": {}}]', 9, 1);
+(137, '2020-12-15 18:01:17.835924', '2', 'UserMessage object (2)', 1, '[{\"added\": {}}]', 9, 1),
+(138, '2020-12-20 12:58:08.159099', '20', 'Aditya Roy', 2, '[{\"changed\": {\"fields\": [\"IsLoggedIn\"]}}]', 7, 1),
+(139, '2020-12-20 13:14:23.590480', '20', 'Aditya Roy', 2, '[{\"changed\": {\"fields\": [\"IsLoggedIn\"]}}]', 7, 1),
+(140, '2020-12-20 13:20:37.237791', '20', 'Aditya Roy', 2, '[{\"changed\": {\"fields\": [\"IsLoggedIn\"]}}]', 7, 1),
+(141, '2020-12-20 13:22:10.867010', '20', 'Aditya Roy', 2, '[{\"changed\": {\"fields\": [\"IsLoggedIn\"]}}]', 7, 1),
+(142, '2020-12-20 13:23:41.218522', '20', 'Aditya Roy', 2, '[{\"changed\": {\"fields\": [\"IsLoggedIn\"]}}]', 7, 1),
+(143, '2020-12-20 13:28:15.778829', '20', 'Aditya Roy', 2, '[{\"changed\": {\"fields\": [\"IsLoggedIn\"]}}]', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -421,7 +427,8 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('3ds2t04oggz79ipiazwz0h075h2ddz65', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kp2q0:LHF0koa7DmRPBRHw8yJWtV1bmjyh_Kw7Ps1nV1ew5HE', '2020-12-29 05:25:28.892670'),
 ('6beoo0givrcg3dqtmmg67xe0cyov1q3w', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kmgMA:99ZoUVHHYpIGZlQv3YDvraJYd0O4LaQC-EExY2ctHEQ', '2020-12-22 17:00:54.340339'),
 ('9fjxccac4nerefyambpaqf1rwopi8mg4', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1ko6YN:kzjmB4GIlYhVyCM5vHLDe7LWPA1xPbRMaL4XuL1H7JI', '2020-12-26 15:11:23.014374'),
-('vb26r8wpszt31pol70dqomajpbm36rqr', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kmfi2:Qf6w1hfkWbOZd1aw_aqzwe51b7aBjscjI-7u9pvsf8E', '2020-12-22 16:19:26.470723');
+('vb26r8wpszt31pol70dqomajpbm36rqr', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kmfi2:Qf6w1hfkWbOZd1aw_aqzwe51b7aBjscjI-7u9pvsf8E', '2020-12-22 16:19:26.470723'),
+('z1yju1ztx2qac1ly6p9ni3akprfu0w2y', '.eJxVjEEOgjAQRe_StWlopwXq0r1naGY6M4IaSCisjHdXEha6_e-9_zIZt3XIW5Ulj2zOxpnT70ZYHjLtgO843WZb5mldRrK7Yg9a7XVmeV4O9-9gwDp86wjFKzaACqJC4Nl77Thx7LTvSbUlCdAmiKF1jAGJi0sxSdMHQArm_QEHjjiX:1kqy6Y:qPE9N5D4AY3kj9dw9Ito1as78Xqza4_aV8UdHBNJmTQ', '2021-01-03 12:46:30.306211');
 
 -- --------------------------------------------------------
 
@@ -547,35 +554,36 @@ CREATE TABLE `showroom_customer` (
   `credit_info` varchar(12) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
   `profile_pic` varchar(100) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `user_id` int(11) DEFAULT NULL,
+  `is_logged_in` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `showroom_customer`
 --
 
-INSERT INTO `showroom_customer` (`id`, `name`, `email`, `password`, `phone`, `credit_info`, `location`, `profile_pic`, `user_id`) VALUES
-(1, 'Shakib Al Hasan', 'sah75@gmail.com', 'Gearup123', '0123456789', '333444555666', 'Bangladesh', 'static/img/user_dp/Shakib.jpg', NULL),
-(2, 'Salman F Rahman', 'salmanfrahman@beximcoltd.com', 'Gearup123', '0132456788', '333444555666', 'Bangladesh', 'static/img/user_dp/profile.png', NULL),
-(3, 'Mashrafe Mortaza', 'mash02@gmail.com', 'Gearup123', '0143256780', '333444555666', 'Bangladesh', 'static/img/user_dp/mash.jpg', NULL),
-(4, 'William Rechard', 'willrich@gmail.com', 'Gearup123', '1243224442', '333444555666', 'United States', 'static/img/user_dp/profile_5kJEawG.png', NULL),
-(5, 'Moosa Bin Shamsher', 'm00sa@gmail.com', 'Gearup123', '0132457698', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_5zMmt1Q.png', NULL),
-(6, 'James Martin', 'jimmymartin@yahoo.com', 'Gearup123', '64008811668', '333444555666', 'Australia', 'static/img/user_dp/profile_ZtH8qN9.png', NULL),
-(7, 'Kazi Salahuddin', 'salauddin@bff.co.bd', 'Gearup123', '01845238966', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_CBXwTXV.png', NULL),
-(8, 'Ahmed Sharif', 'ahmedsharif@gmail.com', 'Gearup123', '01684673289', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_MWeNvIs.png', NULL),
-(9, 'Nitin Ghosh', 'nitinghosh32@gmail.com', 'Gearup123', '01745362819', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_5GrAz9h.png', NULL),
-(10, 'Hamin Ahmed', 'hamin42@gmail.com', 'Gearup123', '01386763515', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_NIKYlRe.png', NULL),
-(11, 'Lamia Tasnova', 'lamiatasnova@hululu.com', '122333444455555', '01725789612', '340900823210', 'Bangladesh', 'static/img/user_dp/RzTAC2Q.jpg', NULL),
-(12, 'Saad Abdullah', 'sadislife@gmail.com', '12233344445555566666', '01625789613', '340900823211', 'Bangladesh', 'static/img/user_dp/sad-title-image_tcm7-179953.jpg', NULL),
-(13, 'Samira Alam', 'saminuralam@gmail.com', '122333444455555000000', '01925789614', '340900823212', 'Bangladesh', 'static/img/user_dp/pexels-suliman-sallehi-1704488.jpg', NULL),
-(14, 'Alam Khan', 'alamkhan4321@yahoo.com', '12233344445555566', '0162578967', '340900823214', 'Bangladesh', 'static/img/user_dp/pexels-tuấn-kiệt-jr-1374510.jpg', NULL),
-(15, 'Samiha Islam', 'samihaislam1222@gmail.com', '112255663377889', '01755789679', '340900823215', 'Bangladesh', 'static/img/user_dp/pexels-giftpunditscom-1310522.jpg', NULL),
-(16, 'Labiba Al Hasan', 'labibbaah@gmail.com', '5555555555555555666666', '01625789680', '340900823216', 'Bangladesh', 'static/img/user_dp/pexels-louis-1895578.jpg', NULL),
-(17, 'Shafi Ahmed', 'shafi.ahmed1325@gmail.com', '12233344445555512', '01325789697', '340900823217', 'Bangladesh', 'static/img/user_dp/3GmPd7O.png', NULL),
-(18, 'Sakib Anwar', 'sakib.anwar.5685@gmail.com', '454545496896563126416', '01625789681', '340900823218', 'Bangladesh', 'static/img/user_dp/g5UCAeA.jpeg', NULL),
-(19, 'Nayeem Rafsan', 'nayeem.rafsan44499@gmail.com', '122333444455555121aaaa', '01725789682', '340900823230', 'Bangladesh', 'static/img/user_dp/58D9Ojv.jpeg', NULL),
-(20, 'Aditya Roy', 'adi.roy.8989@gmail.com', '5656665656596aaasaksoaksok', '01525789690', '340900823290', 'Bangladesh', 'static/img/user_dp/gusFring2_EuM6yxz.jpg', NULL),
-(21, 'OK', 'OK@gmail.com', 'OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK', '121212121212', '123456789133', 'Dhanmondi, Dhaka', 'static/img/user_dp/gusFring2.jpg', NULL);
+INSERT INTO `showroom_customer` (`id`, `name`, `email`, `password`, `phone`, `credit_info`, `location`, `profile_pic`, `user_id`, `is_logged_in`) VALUES
+(1, 'Shakib Al Hasan', 'sah75@gmail.com', 'Gearup123', '0123456789', '333444555666', 'Bangladesh', 'static/img/user_dp/Shakib.jpg', NULL, 0),
+(2, 'Salman F Rahman', 'salmanfrahman@beximcoltd.com', 'Gearup123', '0132456788', '333444555666', 'Bangladesh', 'static/img/user_dp/profile.png', NULL, 0),
+(3, 'Mashrafe Mortaza', 'mash02@gmail.com', 'Gearup123', '0143256780', '333444555666', 'Bangladesh', 'static/img/user_dp/mash.jpg', NULL, 0),
+(4, 'William Rechard', 'willrich@gmail.com', 'Gearup123', '1243224442', '333444555666', 'United States', 'static/img/user_dp/profile_5kJEawG.png', NULL, 0),
+(5, 'Moosa Bin Shamsher', 'm00sa@gmail.com', 'Gearup123', '0132457698', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_5zMmt1Q.png', NULL, 0),
+(6, 'James Martin', 'jimmymartin@yahoo.com', 'Gearup123', '64008811668', '333444555666', 'Australia', 'static/img/user_dp/profile_ZtH8qN9.png', NULL, 0),
+(7, 'Kazi Salahuddin', 'salauddin@bff.co.bd', 'Gearup123', '01845238966', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_CBXwTXV.png', NULL, 0),
+(8, 'Ahmed Sharif', 'ahmedsharif@gmail.com', 'Gearup123', '01684673289', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_MWeNvIs.png', NULL, 0),
+(9, 'Nitin Ghosh', 'nitinghosh32@gmail.com', 'Gearup123', '01745362819', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_5GrAz9h.png', NULL, 0),
+(10, 'Hamin Ahmed', 'hamin42@gmail.com', 'Gearup123', '01386763515', '333444555666', 'Bangladesh', 'static/img/user_dp/profile_NIKYlRe.png', NULL, 0),
+(11, 'Lamia Tasnova', 'lamiatasnova@hululu.com', '122333444455555', '01725789612', '340900823210', 'Bangladesh', 'static/img/user_dp/RzTAC2Q.jpg', NULL, 0),
+(12, 'Saad Abdullah', 'sadislife@gmail.com', '12233344445555566666', '01625789613', '340900823211', 'Bangladesh', 'static/img/user_dp/sad-title-image_tcm7-179953.jpg', NULL, 0),
+(13, 'Samira Alam', 'saminuralam@gmail.com', '122333444455555000000', '01925789614', '340900823212', 'Bangladesh', 'static/img/user_dp/pexels-suliman-sallehi-1704488.jpg', NULL, 0),
+(14, 'Alam Khan', 'alamkhan4321@yahoo.com', '12233344445555566', '0162578967', '340900823214', 'Bangladesh', 'static/img/user_dp/pexels-tuấn-kiệt-jr-1374510.jpg', NULL, 0),
+(15, 'Samiha Islam', 'samihaislam1222@gmail.com', '112255663377889', '01755789679', '340900823215', 'Bangladesh', 'static/img/user_dp/pexels-giftpunditscom-1310522.jpg', NULL, 0),
+(16, 'Labiba Al Hasan', 'labibbaah@gmail.com', '5555555555555555666666', '01625789680', '340900823216', 'Bangladesh', 'static/img/user_dp/pexels-louis-1895578.jpg', NULL, 0),
+(17, 'Shafi Ahmed', 'shafi.ahmed1325@gmail.com', '12233344445555512', '01325789697', '340900823217', 'Bangladesh', 'static/img/user_dp/3GmPd7O.png', NULL, 0),
+(18, 'Sakib Anwar', 'sakib.anwar.5685@gmail.com', '454545496896563126416', '01625789681', '340900823218', 'Bangladesh', 'static/img/user_dp/g5UCAeA.jpeg', NULL, 0),
+(19, 'Nayeem Rafsan', 'nayeem.rafsan44499@gmail.com', '122333444455555121aaaa', '01725789682', '340900823230', 'Bangladesh', 'static/img/user_dp/58D9Ojv.jpeg', NULL, 0),
+(20, 'Aditya Roy', 'adi.roy.8989@gmail.com', '5656665656596aaasaksoaksok', '01525789690', '340900823290', 'Bangladesh', 'static/img/user_dp/gusFring2_EuM6yxz.jpg', NULL, 1),
+(21, 'OK', 'OK@gmail.com', 'OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK', '121212121212', '123456789133', 'Dhanmondi, Dhaka', 'static/img/user_dp/gusFring2.jpg', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1029,7 +1037,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`

@@ -198,12 +198,17 @@ class CustomerAdmin(admin.ModelAdmin):
                 'credit_info',
             )
         }),
+        ("Is Logged-in",{
+            "fields":(
+                'is_logged_in',
+            )
+        }),
         ("Others",{
             "fields":(
                 ('bookings','product',),
                 'messages',
             )
-        })
+        }),
     )
     list_per_page = 10
     search_fields = ('name','phone','email',)
