@@ -67,7 +67,7 @@
                 <input type="password" name="password2" class="form-control" placeholder="Re-enter Password">
                    <small class="form-text">We'll never share your personal details with anyone.</small>
                    {% for message in messages %}
-                  <small class="form-text" style="color: #dc3545">{{message}}</small>
+                  <small class="form-text" style="color: #dc3545;text-transform: capitalize;">{{message}}</small>
                   {% endfor %}
              </div>
                <button type="submit" class="btn btn-info mt-3 btn-block shadow-sm font-weight-bold">Submit</button>
