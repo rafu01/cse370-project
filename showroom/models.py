@@ -94,8 +94,12 @@ class Booking(models.Model):
     price = models.FloatField(default=0)
     date = models.DateTimeField(default=timezone.now)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     def __str__(self):
         return f'Product:{str(self.product)}\tCustomer: {str(self.customers)}'
+        
 
 
 class Manufacturer(models.Model):

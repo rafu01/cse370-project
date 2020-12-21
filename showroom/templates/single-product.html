@@ -56,7 +56,20 @@
                         {% endif %}
                         <p><span style="font-weight: bold;">Description:</span><br>{{product.description}}</p>
                         <p><span style="font-weight: bold;">Brand:</span> {{product.manufacturers}}</p>
-                        <button class="btn btn-info"> Add to Cart </button>&nbsp;&nbsp;<button class="btn btn-warning"> Buy Now </button>
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <input name="quantity" type="number" class="form-control" placeholder="Quantity" style="width: 160px;">
+                            </div>
+                          </div>
+                          &nbsp;&nbsp;
+                          <div class="col-md-3">
+                            <a name="product_id" href="{% url 'booking' product.id %}"><button class="btn btn-warning">Buy Now</button></a>
+                          </div>
+                        </div>
+                        {% for message in messages %}
+                          <small class="form-text" style="color: #dc3545;text-transform: capitalize;">{{message}}</small>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

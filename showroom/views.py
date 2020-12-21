@@ -175,3 +175,45 @@ def about_us(request):
         email = request.user.username
         customer = Customer.objects.get(email=email)
     return render(request, 'about-us.html', {'customer': customer})
+
+
+def booking(request, pk):
+    product = Products.objects.get(id=pk)
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+        
+        credit_info = customer.credit_info
+        location = customer.location
+        # if request.method == 'POST':
+        #     quantity = request.POST.get('quantity')
+        #     booking = Booking(customers=customer,product=product,quantity=quantity,price=int(quantity)*float(product.price))
+        #     booking.save()
+
+        # quantity = request.POST['quantity']
+        path = request.path
+        booking = Booking(customers=customer,product=product,price=product.price,quantity=1)
+        booking.save()
+        print('success')
+        messages.info(request, 'Booking Successful')
+        context = {'product': product, 'customer': customer}
+        return redirect(index)
+    
+    else:
+        return redirect(login)
+
+# def create_booking(request):
+#     customer = ""
+#     if request.user.is_authenticated:
+#         email = request.user.username
+#         customer = Customer.objects.get(email=email)
+#         if request.method == 'POST':
+#             credit_info = request.POST.get('credit')
+#             location = request.POST.get('address')
+#             quantity = request.POST.get('quantity')
+#             booking = Booking(customer=customer,product=product,quantity=quantity,price=int(quantity)*float(product.price))
+#             booking.save()
+#             print('success')
+#         context = {'customer': customer}
+#         return render(request, 'index.html', context)
