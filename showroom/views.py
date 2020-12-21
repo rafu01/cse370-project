@@ -145,7 +145,23 @@ def contact_us(request):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-    return render(request, 'contact_us.html', {'customer': customer})
+        #message = UserMessage.objects.get(customers_id=customer.id)
+        if request.method == 'POST':
+            cmsg = request.POST.get('customer_message')
+            message = UserMessage(customers_id=customer.id, query=cmsg)
+            # message.query = customer_message
+            message.save()
+
+        else:
+            try:
+                message = UserMessage.objects.get(customers_id=customer.id)
+            except:
+                return render(request, 'contact_us.html',{'customer':customer})
+
+        context = {'customer': customer,'message':message}
+        return render(request, 'contact_us.html',context)
+    else:
+        return redirect(login)
 
 
 def about_us(request):

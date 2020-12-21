@@ -145,6 +145,9 @@ class Accesories(Products):
 class UserMessage(models.Model):
     customers = models.ForeignKey(
         'Customer', on_delete=models.SET_NULL, null=True)
-    query = models.TextField()
-    reply = models.TextField(default=None)
+    query = models.TextField(default=' ',null=True)
+    reply = models.TextField(default=' ',null=True)
     date = models.DateTimeField(default=timezone.now)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
