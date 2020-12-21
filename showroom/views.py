@@ -141,8 +141,16 @@ def singleaccessory(request, pk):
 
 
 def contact_us(request):
-    return render(request, 'contact_us.html')
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    return render(request, 'contact_us.html', {'customer': customer})
 
 
 def about_us(request):
-    return render(request, 'about-us.html')
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    return render(request, 'about-us.html', {'customer': customer})
