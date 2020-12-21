@@ -3,46 +3,65 @@ from django.shortcuts import render, redirect
 from .models import *
 from .filters import *
 from django.contrib.auth.models import User, auth
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 
 
 def index(request):
-    return render(request, 'index.html')
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    context = {'customer': customer}
+    return render(request, 'index.html', context)
 
 
 def car_products(request):
     cars = Car.objects.all()
     myFilter = CarFilter(request.GET, queryset=cars)
     cars = myFilter.qs
-    context = {'cars': cars, 'myFilter': myFilter}
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    context = {'cars': cars, 'myFilter': myFilter, 'customer': customer}
     return render(request, 'car-products.html', context)
 
+
 def logout(request):
-    if request.method == 'POST':    
-        email = request.POST['email']
-        customer = Customer.objects.get(email=email)
-        customer.is_logged_in = 0
-        customer.save()
-        return redirect('index')
-    else:
-        return redirect('index')
+    auth_logout(request)
+    print('logout success')
+    return redirect(index)
 
 
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        customer = Customer.objects.get(email=email)
-        if customer.password == password:
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            auth_login(request, user)
             print('success')
-            customer.is_logged_in = 1
-            customer.save()
-            user = {'customer':customer}
-            return render(request,'index.html',user)
+            customer = Customer.objects.get(email=email)
+            user = {'user': user, 'customer': customer}
+            return render(request, 'index.html', user)
         else:
             messages.info(request, 'invalid email or password')
             print('failed')
-            return redirect('login')
+            return render(request, 'login.html')
+        # customer = Customer.objects.get(email=email)
+        # if customer.password == password:
+        #     print('success')
+        #     customer.is_logged_in = 1
+        #     customer.save()
+        #     user = {'customer': customer}
+        #     return render(request, 'index.html', user)
+        # else:
+        #     messages.info(request, 'invalid email or password')
+        #     print('failed')
+        #     return redirect('login')
     else:
         return render(request, 'login.html')
 
@@ -61,6 +80,8 @@ def signup(request):
             user = Customer(password=password1, email=email,
                             name=name, phone=phone)
             user.save()
+            user = User.objects.create_user(email, email, password1)
+            user.save()
             return redirect('login')
     else:
         return render(request, 'signup.html')
@@ -71,13 +92,17 @@ def search(request):
         query = request.GET.get('search')
     except:
         query = None
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
     if query:
         products = Products.objects.filter(name__icontains=query)
         template = 'search.html'
-        context = {'query': query, 'products': products}
+        context = {'query': query, 'products': products, 'customer': customer}
     else:
         template = 'search.html'
-        context = {'query': ''}
+        context = {'query': '', 'customer': customer}
 
     return render(request, template, context)
 
@@ -86,24 +111,38 @@ def accessories(request):
     accessories = Accesories.objects.all()
     myFilter = AccessoriesFilter(request.GET, queryset=accessories)
     accessories = myFilter.qs
-    context = {'accessories': accessories, 'myFilter': myFilter}
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    context = {'accessories': accessories,
+               'myFilter': myFilter, 'customer': customer}
     return render(request, 'accessories.html', context)
 
 
 def singlecar(request, pk):
     product = Car.objects.get(id=pk)
-    context = {'product': product}
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    context = {'product': product, 'customer': customer}
     return render(request, 'single-product.html', context)
 
 
 def singleaccessory(request, pk):
     product = Accesories.objects.get(id=pk)
-    context = {'product': product}
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+    context = {'product': product, 'customer': customer}
     return render(request, 'single-product.html', context)
 
 
 def contact_us(request):
     return render(request, 'contact_us.html')
+
 
 def about_us(request):
     return render(request, 'about-us.html')
