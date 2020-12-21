@@ -9,20 +9,20 @@ class Migration(migrations.Migration):
         ('showroom', '0001_initial'),
     ]
 
-    operations = [
-        migrations.AddField(
-            model_name='customer',
-            name='is_logged_in',
-            field=models.BooleanField(default=False, verbose_name='isloggedin'),
-        ),
-        migrations.AddField(
-            model_name='usermessage',
-            name='reply',
-            field=models.TextField(default=None),
-        ),
-        migrations.AlterField(
-            model_name='customer',
-            name='profile_pic',
-            field=models.ImageField(null=True, upload_to='static/img/user_dp'),
-        ),
-    ]
+    # operations = [
+    #     migrations.AddField(
+    #         model_name='customer',
+    #         name='is_logged_in',
+    #         field=models.BooleanField(default=False, verbose_name='isloggedin'),
+    #     ),
+    #     migrations.AddField(
+    #         model_name='usermessage',
+    #         name='reply',
+    #         field=models.TextField(default=None),
+    #     ),
+    #     migrations.AlterField(
+    #         model_name='customer',
+    #         name='profile_pic',
+    #         field=models.ImageField(null=True, upload_to='static/img/user_dp'),
+    #     ),
+    # ]
