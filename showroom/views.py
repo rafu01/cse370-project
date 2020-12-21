@@ -145,10 +145,11 @@ def contact_us(request):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-        #message = UserMessage.objects.get(customers_id=customer.id)
+        message = UserMessage.objects.get(customers_id=customer.id)
         if request.method == 'POST':
             cmsg = request.POST.get('customer_message')
-            message = UserMessage(customers_id=customer.id, query=cmsg)
+            message.query = cmsg
+            message.reply = " "
             # message.query = customer_message
             message.save()
 
