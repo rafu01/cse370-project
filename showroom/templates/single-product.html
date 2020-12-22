@@ -56,17 +56,19 @@
                         {% endif %}
                         <p><span style="font-weight: bold;">Description:</span><br>{{product.description}}</p>
                         <p><span style="font-weight: bold;">Brand:</span> {{product.manufacturers}}</p>
+                        <form action="{% url 'booking' pk=product.id%}">
                         <div class="row">
                           <div class="col-md-3">
                             <div class="form-group">
-                              <input name="quantity" type="number" class="form-control" placeholder="Quantity" style="width: 160px;">
+                              <input name="qty" type="number" class="form-control" placeholder="Quantity" style="width: 160px;">
                             </div>
                           </div>
                           &nbsp;&nbsp;
                           <div class="col-md-3">
-                            <a name="product_id" href="{% url 'booking' product.id %}"><button class="btn btn-warning">Buy Now</button></a>
+                            <a name="product_id" href=""><button class="btn btn-warning">Buy Now</button></a>
                           </div>
                         </div>
+                      </form>
                     </div>
                 </div>
             </div>

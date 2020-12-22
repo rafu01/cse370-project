@@ -145,7 +145,7 @@ def contact_us(request):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-        try: 
+        try:
             message = UserMessage.objects.get(customers_id=customer.id)
         except:
             message = UserMessage(customers_id=customer.id)
@@ -161,10 +161,10 @@ def contact_us(request):
             try:
                 message = UserMessage.objects.get(customers_id=customer.id)
             except:
-                return render(request, 'contact_us.html',{'customer':customer})
+                return render(request, 'contact_us.html', {'customer': customer})
 
-        context = {'customer': customer,'message':message}
-        return render(request, 'contact_us.html',context)
+        context = {'customer': customer, 'message': message}
+        return render(request, 'contact_us.html', context)
     else:
         return redirect(login)
 
@@ -177,31 +177,31 @@ def about_us(request):
     return render(request, 'about-us.html', {'customer': customer})
 
 
-def booking(request, pk):
-    product = Products.objects.get(id=pk)
-    customer = ""
-    if request.user.is_authenticated:
-        email = request.user.username
-        customer = Customer.objects.get(email=email)
-        
-        credit_info = customer.credit_info
-        location = customer.location
-        # if request.method == 'POST':
-        #     quantity = request.POST.get('quantity')
-        #     booking = Booking(customers=customer,product=product,quantity=quantity,price=int(quantity)*float(product.price))
-        #     booking.save()
+# def booking(request, pk):
+#     product = Products.objects.get(id=pk)
+#     customer = ""
+#     if request.user.is_authenticated:
+#         email = request.user.username
+#         customer = Customer.objects.get(email=email)
 
-        # quantity = request.POST['quantity']
-        path = request.path
-        booking = Booking(customers=customer,product=product,price=product.price,quantity=1)
-        booking.save()
-        print('success')
-        messages.info(request, 'Booking Successful')
-        context = {'product': product, 'customer': customer}
-        return redirect(index)
-    
-    else:
-        return redirect(login)
+#         credit_info = customer.credit_info
+#         location = customer.location
+#         # if request.method == 'POST':
+#         #     quantity = request.POST.get('quantity')
+#         #     booking = Booking(customers=customer,product=product,quantity=quantity,price=int(quantity)*float(product.price))
+#         #     booking.save()
+
+#         # quantity = request.POST['quantity']
+#         path = request.path
+#         booking = Booking(customers=customer,product=product,price=product.price,quantity=1)
+#         booking.save()
+#         print('success')
+#         messages.info(request, 'Booking Successful')
+#         context = {'product': product, 'customer': customer}
+#         return redirect(index)
+
+#     else:
+#         return redirect(login)
 
 # def create_booking(request):
 #     customer = ""
@@ -217,3 +217,25 @@ def booking(request, pk):
 #             print('success')
 #         context = {'customer': customer}
 #         return render(request, 'index.html', context)
+
+def booking(request, pk):
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+        product = ''
+        qty = ''
+        if request.method == 'POST':
+            qty = request.POST['qty']
+            print('success')
+            print('qty', qty)
+        else:
+            qty = request.GET.get('qty')
+            print(qty)
+            product = Products.objects.get(id=pk)
+        messages.info(request, 'Booking Successful')
+        context = {'customer': customer, 'qty': qty, 'product': product}
+        return render(request, 'booking_page.html', context)
+
+    else:
+        return redirect(login)
