@@ -50,7 +50,7 @@
                     <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'accessories' %}">Accessories</a></li>
                     {% if user.is_authenticated %}
                         <!-- <li id="navbar" class="nav-item"><img style="border-radius: 40px; height: 40px;  width: 40px" src="{{customer.profile_pic}}" alt=""></li> -->
-                        <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;">{{customer.name}}</a></li>
+                        <li id="navbar" class="nav-item"><a href="{% url 'profile' %}" style="color: white; padding: 10px; text-decoration: none;">{{customer.name}}</a></li>
                         <li id="navbar" class="nav-item"><form action="logout" method="POST">{% csrf_token %}<a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'logout' %}">Logout</a></form></li>
                     {% else %}
                         <li id="navbar" class="nav-item"><a style="color: white; padding: 10px; text-decoration: none;" href="{% url 'signup' %}">Sign Up</a></li>

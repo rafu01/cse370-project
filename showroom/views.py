@@ -237,3 +237,14 @@ def booking(request, pk):
 
     else:
         return redirect(login)
+
+
+def profile(request):
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+        context = {'customer': customer}
+        return render(request, 'profile.html', context)
+    else:
+        return redirect(login)
