@@ -223,17 +223,15 @@ def booking(request, pk):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-        product = ''
-        qty = ''
-        if request.method == 'POST':
-            qty = request.POST['qty']
-            print('success')
-            print('qty', qty)
-        else:
-            qty = request.GET.get('qty')
-            print(qty)
-            product = Products.objects.get(id=pk)
-        messages.info(request, 'Booking Successful')
+        # if request.method == 'POST':
+        #     qty = request.POST['qty']
+        #     print('success')
+        #     print('qty', qty)
+        # else:
+        qty = request.GET.get('qty')
+        print(qty)
+        qty = int(qty)
+        product = Products.objects.get(id=pk)
         context = {'customer': customer, 'qty': qty, 'product': product}
         return render(request, 'booking_page.html', context)
 

@@ -1,6 +1,4 @@
 {% load static %}
-
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +31,7 @@
          background-size: cover;
       }
    </style>
-   <title>Login Form</title>
+   <title>Booking form</title>
 </head>
 <body>
    <div class="row justify-content-center"style="padding-top:100px">
@@ -68,7 +66,9 @@
                 <p><b>Product name: </b>{{product.name}}</p>
                 <p><b>Product quantity: </b>{{qty}}</p>
                 {% if qty > product.quantity %}
-                    <p class="font-weight-bold" style="color: #dc3545;">Quantity is greater than available quantity!</p>
+                    <p class="font-weight-bold" style="color: #dc3545;">Quantity is greater than available quantity! <br> available quantity: {{product.quantity}}</p>
+               {% elif 0 >= qty %}
+                  <p class="font-weight-bold" style="color: #dc3545;">0 is not valid a quantity</p>
                 {% else %}
                     <p class="font-weight-bold" style="color:#5bc0de;">Quantity is available</p>
                 {% endif %}
