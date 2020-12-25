@@ -156,14 +156,10 @@ def contact_us(request):
         if request.method == 'POST':
             cmsg = request.POST.get('customer_message')
             product_name = request.POST.get('product_name')
-            product_manufacturer = request.POST.get('product_manufacturers')
             message.product_name = product_name
-            message.product_manufacturers = product_manufacturer
-            # if product_manufacturer == Products.objects.get(name=product_name).manufacturers:
+            message.product_manufacturers = Products.objects.get(name=product_name).manufacturers.name
             message.query = cmsg
             message.reply = " "
-
-            # message.query = customer_message
             message.save()
         
         else:
