@@ -238,13 +238,13 @@ admin.site.register(Booking, BookingAdmin)
 
 
 class UserMessageAdmin(admin.ModelAdmin):
-    list_display = ('customers','query','date','product_name','product_year','product_manufacturers')
+    list_display = ('customers','query','date','product_name','product_manufacturers')
     fields = (
         'customers',
         ('query','reply',),
-        ('product_name','product_year','product_manufacturers'),
+        ('product_name','product_manufacturers'),
         'date'
     )
     list_per_page = 10
-    ordering = ['date','product_name','product_year','product_manufacturers']
+    ordering = ['date','product_name','product_manufacturers']
 admin.site.register(UserMessage, UserMessageAdmin)

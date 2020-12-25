@@ -145,6 +145,7 @@ def contact_us(request):
     customer = ""
     if request.user.is_authenticated:
         product_list = Products.objects.all()
+        manufacter_list = Manufacturer.objects.all()
         email = request.user.username
         customer = Customer.objects.get(email=email)
         try:
@@ -154,8 +155,14 @@ def contact_us(request):
 
         if request.method == 'POST':
             cmsg = request.POST.get('customer_message')
+            product_name = request.POST.get('product_name')
+            product_manufacturer = request.POST.get('product_manufacturers')
+            message.product_name = product_name
+            message.product_manufacturers = product_manufacturer
+            # if product_manufacturer == Products.objects.get(name=product_name).manufacturers:
             message.query = cmsg
             message.reply = " "
+
             # message.query = customer_message
             message.save()
         
@@ -163,9 +170,9 @@ def contact_us(request):
             try:
                 message = UserMessage.objects.get(customers_id=customer.id)
             except:
-                return render(request, 'contact_us.html', {'customer': customer,'products':product_list})
+                return render(request, 'contact_us.html', {'customer': customer,'products':product_list,'manufacturers':manufacter_list})
 
-        context = {'customer': customer, 'message': message,'products':product_list}
+        context = {'customer': customer, 'message': message,'products':product_list,'manufacturers':manufacter_list}
         return render(request, 'contact_us.html', context)
     else:
         return redirect(login)

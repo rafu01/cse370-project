@@ -35,24 +35,25 @@
 				<span class="contact100-form-title" style="font-weight: bold;font-family: Montserrat, sans-serif; color: white;padding-bottom: 40px;">
 					Send Us A Message
 				</span>
-				<select name="product_name">
-					<option selected="selected">Uncategorized</option>
-					{% for product in products %}
-						<option>{{product.name}}</option>
-					{% endfor %}
-				</select>
-				<select name="product_year">
-					<option selected="selected">---</option>
-					{% for product in products %}
-						<option>{{product.year}}</option>
-					{% endfor %}
-				</select>
-				<select name="product_manufacturers">
-					<option selected="selected">---</option>
-					{% for product in products %}
-						<option>{{product.manufacturers}}</option>
-					{% endfor %}
-				</select>
+				<div style="padding: 10px;">
+					<small style="font-weight: bold;">Manufacturer:</small>
+					<select name="product_manufacturers" style="padding:10px; width: 530px">
+						<option>Uncategorized</option>
+						{% for manufacturer in manufacturers %}
+							<option>{{manufacturer.name}}</option>
+						{% endfor %}
+					</select>
+				</div>
+				
+				<div style="padding: 10px;">
+					<small style="font-weight: bold;">Product:</small>
+					<select name="product_name" style="padding:10px; width: 530px">
+						<option>---</option>
+						{% for product in products %}
+							<option>{{product.name}}</option>
+						{% endfor %}
+					</select>
+				</div>
 				<!-- <div class="wrap-input100 validate-input" data-validate="Please enter your name">
 					<input style="font-family: Montserrat, sans-serif;" class="input100" type="text" name="name" placeholder="Full Name">
 					<span class="focus-input100"></span>
@@ -68,16 +69,18 @@
 					<span class="focus-input100"></span>
 				</div> -->
 				
-				<div class="row">
+				<div class="row" style="padding:10px;padding-bottom:0px">
 					<div class="col-md-12">
+						<small style="font-weight: bold;">Admin's Reply:</small>
 						<div class="card card-body">
 							<p name="admin">{{message.reply}}</p>
 						</div>
 					</div>
 				</div>
 				<br>
-				<div class="row">
+				<div class="row" style="padding:10px; padding-top:0px">
 					<div class="col-md-12">
+						<small style="font-weight: bold;">Your Message:</small>
 						<div class="card card-body">
 							<p>{{message.query}}</p>
 						</div>

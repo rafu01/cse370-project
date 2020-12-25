@@ -158,3 +158,6 @@ class UserMessage(models.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+    def __str__(self):
+        return self.customers.name
