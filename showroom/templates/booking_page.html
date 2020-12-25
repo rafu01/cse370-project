@@ -64,13 +64,6 @@
          <div class="card-body col-md-12" style="background-color:rgb(0,0,0,0.9); border-radius:10px;color: white;">
                 <p><b>Product Name: </b>{{product.name}}</p>
                 <p><b>User Demanded Quantity: </b>{{qty}}</p>
-                {% if qty > product.quantity %}
-                    <p class="font-weight-bold" style="color: #dc3545;">Quantity is greater than available quantity! <br> available quantity: {{product.quantity}}</p>
-               {% elif 0 >= qty %}
-                  <p class="font-weight-bold" style="color: #dc3545;">0 is not valid a quantity</p>
-                {% else %}
-                    <p class="font-weight-bold" style="color:#5bc0de;">Quantity is available</p>
-                {% endif %}
         </div>
       </div>
    </div>

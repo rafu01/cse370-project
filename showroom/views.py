@@ -256,7 +256,7 @@ def createbooking(request):
             customer.credit_info = credit
             customer.location = location
             customer.save()
-            return render(request, 'profile.html', {'customer':customer})
+            return redirect(profile)
         else:
             print('POST Failed')
             return render(request,'index.html',{'customer':customer})
