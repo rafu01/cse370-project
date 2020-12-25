@@ -246,5 +246,5 @@ class UserMessageAdmin(admin.ModelAdmin):
         'date'
     )
     list_per_page = 10
-    ordering = ['date','product_name','product_manufacturers']
+    ordering = ['customers','date','product_name','product_manufacturers']
 admin.site.register(UserMessage, UserMessageAdmin)

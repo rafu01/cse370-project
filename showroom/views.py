@@ -157,7 +157,10 @@ def contact_us(request):
             cmsg = request.POST.get('customer_message')
             product_name = request.POST.get('product_name')
             message.product_name = product_name
-            message.product_manufacturers = Products.objects.get(name=product_name).manufacturers.name
+            if product_name != '---':
+                message.product_manufacturers = Products.objects.get(name=product_name).manufacturers.name
+            else:
+                message.product_manufacturers = '---'
             message.query = cmsg
             message.reply = " "
             message.save()
