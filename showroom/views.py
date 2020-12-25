@@ -102,7 +102,9 @@ def search(request):
     if query:
         products = Products.objects.filter(name__icontains=query)
         template = 'search.html'
-        context = {'query': query, 'products': products, 'customer': customer}
+        context = {'query': query,
+                   'products': products,
+                   'customer': customer}
     else:
         template = 'search.html'
         context = {'query': '', 'customer': customer}
@@ -118,8 +120,11 @@ def accessories(request):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
+
     context = {'accessories': accessories,
-               'myFilter': myFilter, 'customer': customer}
+               'myFilter': myFilter,
+               'customer': customer}
+
     return render(request, 'accessories.html', context)
 
 
@@ -173,8 +178,10 @@ def contact_us(request):
             except:
                 return render(request, 'contact_us.html', {'customer': customer, 'products': product_list})
 
-        context = {'customer': customer, 'message': message,
+        context = {'customer': customer,
+                   'message': message,
                    'products': product_list}
+
         return render(request, 'contact_us.html', context)
     else:
         return redirect(login)
@@ -244,7 +251,7 @@ def booking(request, pk):
         qty = int(qty)
         product = Products.objects.get(id=pk)
         booking = Booking(customers=customer, quantity=qty,
-                          price=product.price, product=product)
+                          price=qty*product.price, product=product)
         booking.save()
         product.quantity -= qty
         product.bookings.add(booking)
@@ -254,7 +261,10 @@ def booking(request, pk):
         customer.product.add(product)
         customer.save()
 
-        context = {'customer': customer, 'qty': qty, 'product': product}
+        context = {'customer': customer,
+                   'qty': qty,
+                   'product': product}
+
         return render(request, 'booking_page.html', context)
         # else:
         #     return HttpResponseRedirect(request.path_info)
@@ -271,9 +281,9 @@ def createbooking(request):
         if request.method == "POST":
             credit = request.POST['credit']
             location = request.POST['location']
-            if credit is not "":
+            if credit != "":
                 customer.credit_info = credit
-            if location is not "":
+            if location != "":
                 customer.location = location
             customer.save()
             return redirect(profile)
@@ -312,18 +322,18 @@ def updateprofile(request):
             address = request.POST.get('address', default=customer.location)
             credit = request.POST.get('credit', default=customer.credit_info)
             password = request.POST.get('password', default=customer.password)
-            if fullname is not "":
+            if fullname != "":
                 customer.name = fullname
-            if email is not "":
+            if email != "":
                 customer.email = email
                 request.user.username = email
-            if phone is not "":
+            if phone != "":
                 customer.phone = phone
-            if address is not "":
+            if address != "":
                 customer.location = address
-            if credit is not "":
+            if credit != "":
                 customer.credit_info = credit
-            if password is not "":
+            if password != "":
                 customer.password = password
                 request.user.password = password
             customer.save()

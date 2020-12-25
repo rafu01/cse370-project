@@ -1,139 +1,150 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>User profile</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/profilecss.css' %}">
-    
+  <meta charset="utf-8">
+  <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+  <!--  All snippets are MIT license http://bootdey.com/license -->
+  <title>User profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/profilecss.css' %}">
+
 </head>
 {% include 'navbar.html' %}
-<body style="color: black;">
-<div class="container">
-    <div class="main-body">
-      
-        <form action="{% url 'updateprofile' %}" method="POST">
-          {% csrf_token %}
-          
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{customer.profile_pic}}" alt="---" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h5>{{customer.name}}</h5>
-                      <p class="text-secondary mb-1">{{customer.email}}</p>
-                      {% if customer.location is not None %}
-                        <p class="text-muted font-size-sm">{{customer.location}}</p>
-                        {% endif %}
-                        <br>
-                      <button class="btn btn-info">Update profile</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input name="fullname" class="form-control" type="text" placeholder="{{customer.name}}" style="height:35px">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input name="email" class="form-control" type="text" placeholder="{{customer.email}}" style="height:35px">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input name="phone" class="form-control" type="text" placeholder="{{customer.phone}}" style="height:35px">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
-                    </div>
-                    {% if customer.location is not None%}
-                        <div class="col-sm-9 text-secondary"><input name="address" class="form-control" type="text" placeholder="{{customer.location}}" style="height:35px"></div>
-                    {% else %}
-                        <div class="col-sm-9 text-secondary"><input name="address" class="form-control" type="text" placeholder="Not provided yet" style="height:35px"></div>
-                    {% endif %}
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Credit Info</h6>
-                    </div>
-                    {% if customer.credit_info is not None%}
-                        <div class="col-sm-9 text-secondary"><input name="credit" class="form-control" type="text" placeholder="{{customer.credit_info}}" style="height:35px"></div>
-                    {% else %}
-                        <div class="col-sm-9 text-secondary"><input name="credit" class="form-control" type="text" placeholder="Not provided yet" style="height:35px"></div>
-                    {% endif %}
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Password</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input name="password" class="form-control" type="password" placeholder="{{customer.password}}" style="height:35px">
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-                <div class="container" style="display: block; background-color: white; border-radius:10px;">
-                  <h4 style="padding-top:12px;text-align: left;padding-bottom:10px; font-weight:bold">Booking history</h4> 
-                  <div class="table table-hover">
-                    <table class="table">
-                      <tr style="text-align:center">
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                      <tr> 
-                      {% for books in booking %}
-                        <tr style="text-align:center">
-                          <td>{{books.product}}</td>
-                          <td>{{books.quantity}}</td>
-                          <td>{{books.price}}</td>
-                          <td>{{books.date}}</td>
-                        <tr> 
-                      {% endfor %}
-                    </table>
-                  </div> 
+<body style="color: black;">
+  <div class="container">
+    <div class="main-body">
+
+      <form action="{% url 'updateprofile' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img src="{{customer.profile_pic}}" alt="---" class="rounded-circle" width="150">
+                  <div class="mt-3">
+                    <h5>{{customer.name}}</h5>
+                    <p class="text-secondary mb-1">{{customer.email}}</p>
+                    {% if customer.location is not None %}
+                    <p class="text-muted font-size-sm">{{customer.location}}</p>
+                    {% endif %}
+                    <br>
+                    <button class="btn btn-info">Update profile</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input name="fullname" class="form-control" type="text" placeholder="{{customer.name}}"
+                      style="height:35px">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input name="email" class="form-control" type="text" placeholder="{{customer.email}}"
+                      style="height:35px">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Phone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input name="phone" class="form-control" type="text" placeholder="{{customer.phone}}"
+                      style="height:35px">
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Address</h6>
+                  </div>
+                  {% if customer.location is not None%}
+                  <div class="col-sm-9 text-secondary"><input name="address" class="form-control" type="text"
+                      placeholder="{{customer.location}}" style="height:35px"></div>
+                  {% else %}
+                  <div class="col-sm-9 text-secondary"><input name="address" class="form-control" type="text"
+                      placeholder="Not provided yet" style="height:35px"></div>
+                  {% endif %}
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Credit Info</h6>
+                  </div>
+                  {% if customer.credit_info is not None%}
+                  <div class="col-sm-9 text-secondary"><input name="credit" class="form-control" type="text"
+                      placeholder="{{customer.credit_info}}" style="height:35px"></div>
+                  {% else %}
+                  <div class="col-sm-9 text-secondary"><input name="credit" class="form-control" type="text"
+                      placeholder="Not provided yet" style="height:35px"></div>
+                  {% endif %}
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Password</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input name="password" class="form-control" type="password" placeholder="{{customer.password}}"
+                      style="height:35px">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container" style="display: block; background-color: white; border-radius:10px;">
+              <h4 style="padding-top:12px;text-align: left;padding-bottom:10px; font-weight:bold">Booking history</h4>
+              <div class="table table-hover">
+                <table class="table">
+                  <tr style="text-align:center">
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                  <tr>
+                    {% for books in booking %}
+                  <tr style="text-align:center">
+                    <td>{{books.product}}</td>
+                    <td>{{books.quantity}}</td>
+                    <td>{{books.price}}</td>
+                    <td>{{books.date}}</td>
+                  <tr>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
           </div>
         </div>
+      </form>
     </div>
-    {%include 'footer.html'%}
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	
-</script>
+  </div>
+  </div>
+  {%include 'footer.html'%}
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+  </script>
 </body>
+
 </html>

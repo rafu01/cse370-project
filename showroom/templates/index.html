@@ -1,45 +1,73 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <body>
-    <section class="d-flex flex-column justify-content-between" id="hero">
-        <div id="hero-top">
-            {% include 'navbar.html' %}
-            <h2 class="text-center" style="padding-top: 20px;" data-aos="fade-up" data-aos-duration="700" data-aos-once="true" id="subtitle">All Gears in One Place</h2>
-        </div>
-        <div id="hero-bottom" style="height: 146px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-8 offset-2">
-                        <p style="font-size: 18px; color: white;">​Buy Your Dream Car with Us.&nbsp;<br></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="width: 232px;">
-                        <p class="p-top" style="width: 174px; color:white"><i  class="icon ion-speedometer"></i> Find a Car</p>
-                        <p class="p-bot" style="color: white;">hundreds of car collection</p>
-                    </div>
-                    <div class="col with-borders" >
-                        <p class="p-top" style="color: white;">Order</p>
-                        <p class="p-bot" style="width: 81px; color: white">authentic cars</p>
-                    </div>
-                    <div class="col">
-                        <p class="p-top" style="width: 186px; color: white;">Get delivered</p>
-                        <p class="p-bot" style="color: white;">let us deliver your dream car</p>
-                    </div>
-                    <div class="col align-self-center" ><a style="text-decoration: none;" href="{% url 'car-products' %}"><button class="btn btn-outline-light"  type="button" style="width: 136px;">Cars for Sale</button></a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section data-aos="fade-up" data-aos-duration="700" id="video-and-stats"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/tw4jkyfY4HE?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=tw4jkyfY4HE&amp;controls=0" width="560" height="315"></iframe></section>
-        <h2 class="text-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true" id="subtitle-1" style="height: 38px;">Latest Cars and Accessories in One Place</h2>
-        {%include 'footer.html'%}
-    <script src="{% static '/js/jquery.min.js' %}"></script>
-    <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/js/bs-init.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
-    <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
+	<section class="d-flex flex-column justify-content-between" id="hero">
+		<div id="hero-top">
+			{% include 'navbar.html' %}
+			<h2 class="text-center" style="padding-top: 20px" data-aos="fade-up" data-aos-duration="700"
+				data-aos-once="true" id="subtitle">
+				All Gears in One Place
+			</h2>
+		</div>
+		<div id="hero-bottom" style="height: 146px">
+			<div class="container">
+				<div class="row">
+					<div class="col-8 offset-2">
+						<p style="font-size: 18px; color: white">
+							​Buy Your Dream Car with Us.&nbsp;<br />
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col" style="width: 232px">
+						<p class="p-top" style="width: 174px; color: white">
+							<i class="icon ion-speedometer"></i> Find a Car
+						</p>
+						<p class="p-bot" style="color: white">
+							hundreds of car collection
+						</p>
+					</div>
+					<div class="col with-borders">
+						<p class="p-top" style="color: white">Order</p>
+						<p class="p-bot" style="width: 81px; color: white">
+							authentic cars
+						</p>
+					</div>
+					<div class="col">
+						<p class="p-top" style="width: 186px; color: white">
+							Get delivered
+						</p>
+						<p class="p-bot" style="color: white">
+							let us deliver your dream car
+						</p>
+					</div>
+					<div class="col align-self-center">
+						<a style="text-decoration: none" href="{% url 'car-products' %}"><button
+								class="btn btn-outline-light" type="button" style="width: 136px">
+								Cars for Sale
+							</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section data-aos="fade-up" data-aos-duration="700" id="video-and-stats">
+		<iframe allowfullscreen="" frameborder="0"
+			src="https://www.youtube.com/embed/tw4jkyfY4HE?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=tw4jkyfY4HE&amp;controls=0"
+			width="560" height="315"></iframe>
+	</section>
+	<h2 class="text-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true" id="subtitle-1"
+		style="height: 38px">
+		Latest Cars and Accessories in One Place
+	</h2>
+	{%include 'footer.html'%}
+	<script src="{% static '/js/jquery.min.js' %}"></script>
+	<script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static '/js/bs-init.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+	<script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
 </body>
 
 </html>

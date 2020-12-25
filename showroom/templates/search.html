@@ -38,14 +38,15 @@
                             {% endif %}
                             <div class="card-body ">
                                 {% if product.typeOf == 'Car' %}
-                                    <a href="{% url 'car' product.id %}" style="color: white; text-decoration: none; ">
-                                        <h5 class="card-title">{{product.name}}</h5>
-                                    </a>
-                                    <p class="card-text" style="color: white;">
-                                        Model: {{product.year}}
-                                    </p>
+                                <a href="{% url 'car' product.id %}" style="color: white; text-decoration: none; ">
+                                    <h5 class="card-title">{{product.name}}</h5>
+                                </a>
+                                <p class="card-text" style="color: white;">
+                                    Model: {{product.year}}
+                                </p>
                                 {% else %}
-                                <a href="{% url 'accessory' product.id %}" style="color: white; text-decoration: none; ">
+                                <a href="{% url 'accessory' product.id %}"
+                                    style="color: white; text-decoration: none; ">
                                     <h5 class="card-title">{{product.name}}</h5>
                                 </a>
                                 <p class="card-text" style="color: white;">
