@@ -244,7 +244,8 @@ def profile(request):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-        context = {'customer': customer}
+        booking = Booking.objects.filter(customers=customer)
+        context = {'customer': customer,'booking': booking}
         return render(request, 'profile.html', context)
     else:
         return redirect(login)
