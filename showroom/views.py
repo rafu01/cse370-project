@@ -232,11 +232,32 @@ def booking(request, pk):
         print(qty)
         qty = int(qty)
         product = Products.objects.get(id=pk)
+        booking = Booking(customers=customer,quantity=qty,price=product.price)
         context = {'customer': customer, 'qty': qty, 'product': product}
         return render(request, 'booking_page.html', context)
 
     else:
         return redirect(login)
+
+def createbooking(request):
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+        if request.method == "POST":
+            credit = request.POST['credit']
+            location = request.POST['location']
+            customer.credit_info = credit
+            customer.location = location
+            customer.save()
+            return render(request, 'profile.html', {'customer':customer})
+        else:
+            print('POST Failed')
+            return render(request,'index.html',{'customer':customer})
+    
+    else:
+        return redirect(login)
+        
 
 
 def profile(request):

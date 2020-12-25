@@ -21,7 +21,8 @@ urlpatterns = [
     path('about-us', views.about_us, name='about-us'),
     path('logout', views.logout, name='logout'),
     # path('booking/<str:pk>/',views.booking, name='booking'),
-    path(r'booking/<str:pk>', views.booking, name='booking'),
+    path('booking/<str:pk>', views.booking, name='booking'),
     path('profile', views.profile, name='profile'),
+    path('createbooking', views.createbooking, name='createbooking'),
     # path(r'^booking/(?p<pk>\d+/)/$', views.booking_confirm, name='booking_confrim'),
 ]
