@@ -158,20 +158,22 @@ def contact_us(request):
             product_name = request.POST.get('product_name')
             message.product_name = product_name
             if product_name != '---':
-                message.product_manufacturers = Products.objects.get(name=product_name).manufacturers.name
+                message.product_manufacturers = Products.objects.get(
+                    name=product_name).manufacturers.name
             else:
                 message.product_manufacturers = '---'
             message.query = cmsg
             message.reply = " "
             message.save()
-        
+
         else:
             try:
                 message = UserMessage.objects.get(customers_id=customer.id)
             except:
-                return render(request, 'contact_us.html', {'customer': customer,'products':product_list,'manufacturers':manufacter_list})
+                return render(request, 'contact_us.html', {'customer': customer, 'products': product_list, 'manufacturers': manufacter_list})
 
-        context = {'customer': customer, 'message': message,'products':product_list,'manufacturers':manufacter_list}
+        context = {'customer': customer, 'message': message,
+                   'products': product_list, 'manufacturers': manufacter_list}
         return render(request, 'contact_us.html', context)
     else:
         return redirect(login)
@@ -240,10 +242,14 @@ def booking(request, pk):
         print(qty)
         qty = int(qty)
         product = Products.objects.get(id=pk)
-        booking = Booking(customers=customer,quantity=qty,price=product.price,product=product)
+        booking = Booking(customers=customer, quantity=qty,
+                          price=product.price, product=product)
         booking.save()
         product.quantity -= qty
+        product.bookings.add(booking)
         product.save()
+        customer.bookings.add(booking)
+        customer.save()
         context = {'customer': customer, 'qty': qty, 'product': product}
         return render(request, 'booking_page.html', context)
         # else:
@@ -251,6 +257,7 @@ def booking(request, pk):
 
     else:
         return redirect(login)
+
 
 def createbooking(request):
     customer = ""
@@ -266,11 +273,10 @@ def createbooking(request):
             return redirect(profile)
         else:
             print('POST Failed')
-            return render(request,'index.html',{'customer':customer})
-    
+            return render(request, 'index.html', {'customer': customer})
+
     else:
         return redirect(login)
-        
 
 
 def profile(request):
@@ -279,7 +285,7 @@ def profile(request):
         email = request.user.username
         customer = Customer.objects.get(email=email)
         booking = Booking.objects.filter(customers=customer)
-        context = {'customer': customer,'booking': booking}
+        context = {'customer': customer, 'booking': booking}
         return render(request, 'profile.html', context)
     else:
         return redirect(login)

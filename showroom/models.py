@@ -38,7 +38,8 @@ class Customer(models.Model):
     bookings = models.ManyToManyField('Booking', blank=True)
     product = models.ManyToManyField('Products', blank=True)
     messages = models.ManyToManyField('UserMessage', blank=True)
-    is_logged_in = models.BooleanField('isLoggedIn',blank=False, default=False)
+    is_logged_in = models.BooleanField(
+        'isLoggedIn', blank=False, default=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -99,7 +100,6 @@ class Booking(models.Model):
 
     def __str__(self):
         return f'Product:{str(self.product)}\tCustomer: {str(self.customers)}'
-        
 
 
 class Manufacturer(models.Model):
@@ -149,11 +149,11 @@ class Accesories(Products):
 class UserMessage(models.Model):
     customers = models.ForeignKey(
         'Customer', on_delete=models.SET_NULL, null=True)
-    product_name = models.TextField(default='---',null=True)
-    product_year = models.TextField(default='---',null=True)
-    product_manufacturers = models.TextField(default='---',null=True)
-    query = models.TextField(default=' ',null=True)
-    reply = models.TextField(default=' ',null=True)
+    product_name = models.TextField(default='---', null=True)
+    product_year = models.TextField(default='---', null=True)
+    product_manufacturers = models.TextField(default='---', null=True)
+    query = models.TextField(default=' ', null=True)
+    reply = models.TextField(default=' ', null=True)
     date = models.DateTimeField(default=timezone.now)
 
     def __init__(self, *args, **kwargs):
