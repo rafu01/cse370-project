@@ -247,9 +247,12 @@ def booking(request, pk):
         booking.save()
         product.quantity -= qty
         product.bookings.add(booking)
+        product.customers.add(customer)
         product.save()
         customer.bookings.add(booking)
+        customer.product.add(product)
         customer.save()
+
         context = {'customer': customer, 'qty': qty, 'product': product}
         return render(request, 'booking_page.html', context)
         # else:
