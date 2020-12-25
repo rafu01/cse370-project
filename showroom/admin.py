@@ -150,7 +150,8 @@ class CarAdmin(admin.ModelAdmin):
             )
         })
     )
-    list_display = ('name', 'year','manufacturers', 'price')
+    list_display = ('name', 'year','manufacturers', 'price','quantity')
+    ordering = ['quantity']
     list_per_page = 10
     search_fields = ('year','price','name','manufacturers__name',)
     list_editable = ('price',)
@@ -237,13 +238,13 @@ admin.site.register(Booking, BookingAdmin)
 
 
 class UserMessageAdmin(admin.ModelAdmin):
-    list_display = ('customers','query','reply','date')
+    list_display = ('customers','query','date','product_name','product_year','product_manufacturers')
     fields = (
         'customers',
         ('query','reply',),
+        ('product_name','product_year','product_manufacturers'),
         'date'
     )
     list_per_page = 10
-    list_editable = ('query','reply',)
-    ordering = ['date']
+    ordering = ['date','product_name','product_year','product_manufacturers']
 admin.site.register(UserMessage, UserMessageAdmin)

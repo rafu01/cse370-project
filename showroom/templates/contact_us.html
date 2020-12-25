@@ -34,7 +34,25 @@
 			<form method="POST" class="contact100-form validate-form"> {% csrf_token %}
 				<span class="contact100-form-title" style="font-weight: bold;font-family: Montserrat, sans-serif; color: white;padding-bottom: 40px;">
 					Send Us A Message
-                </span>
+				</span>
+				<select name="product_name">
+					<option selected="selected">Uncategorized</option>
+					{% for product in products %}
+						<option>{{product.name}}</option>
+					{% endfor %}
+				</select>
+				<select name="product_year">
+					<option selected="selected">---</option>
+					{% for product in products %}
+						<option>{{product.year}}</option>
+					{% endfor %}
+				</select>
+				<select name="product_manufacturers">
+					<option selected="selected">---</option>
+					{% for product in products %}
+						<option>{{product.manufacturers}}</option>
+					{% endfor %}
+				</select>
 				<!-- <div class="wrap-input100 validate-input" data-validate="Please enter your name">
 					<input style="font-family: Montserrat, sans-serif;" class="input100" type="text" name="name" placeholder="Full Name">
 					<span class="focus-input100"></span>
