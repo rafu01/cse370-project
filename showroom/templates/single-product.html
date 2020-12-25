@@ -57,16 +57,25 @@
                         <p><span style="font-weight: bold;">Description:</span><br>{{product.description}}</p>
                         <p><span style="font-weight: bold;">Brand:</span> {{product.manufacturers}}</p>
                         <form action="{% url 'booking' pk=product.id%}">
-                        <div class="row">
+                          {% if product.quantity != 0 %}
+                          <div class="row">
                           <div class="col-md-3">
-                            <div class="form-group">
-                              <input name="qty" type="number" class="form-control" placeholder="Quantity" style="width: 160px;">
+                            <!-- <div class="form-group">
+                              <input style="color: white;" name="qty" type="range" class="form-control" min="0" max="{{product.quantity}}" placeholder="Quantity" style="width: 160px;">
+                            </div> -->
+
+                            <div class="range-wrap">
+                              <input type="range" class="range" name="qty" min="1" max="{{product.quantity}}" style="width: 160px;">
+                              <output class="bubble"></output>
                             </div>
                           </div>
                           &nbsp;&nbsp;
                           <div class="col-md-3">
                             <a name="product_id" href=""><button class="btn btn-warning">Buy Now</button></a>
                           </div>
+                          {% else %}
+                          <span style="color: #dc3545;">Sorry! You cannot buy this.</span>
+                          {% endif %}
                         </div>
                       </form>
                     </div>
@@ -75,4 +84,27 @@
             {%include 'footer.html'%}
         </div>
     </body>
+    <script>
+      const allRanges = document.querySelectorAll(".range-wrap");
+      allRanges.forEach(wrap => {
+        const range = wrap.querySelector(".range");
+        const bubble = wrap.querySelector(".bubble");
+
+        range.addEventListener("input", () => {
+          setBubble(range, bubble);
+        });
+        setBubble(range, bubble);
+      });
+
+      function setBubble(range, bubble) {
+        const val = range.value;
+        const min = range.min ? range.min : 0;
+        const max = range.max ? range.max : 100;
+        const newVal = Number(((val - min) * 100) / (max - min));
+        bubble.innerHTML = val;
+
+        // Sorta magic numbers based on size of the native UI thumb
+        bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+      }
+    </script>
 </html>

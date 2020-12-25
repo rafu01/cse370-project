@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -232,9 +233,14 @@ def booking(request, pk):
         print(qty)
         qty = int(qty)
         product = Products.objects.get(id=pk)
-        booking = Booking(customers=customer,quantity=qty,price=product.price)
+        booking = Booking(customers=customer,quantity=qty,price=product.price,product=product)
+        booking.save()
+        product.quantity -= qty
+        product.save()
         context = {'customer': customer, 'qty': qty, 'product': product}
         return render(request, 'booking_page.html', context)
+        # else:
+        #     return HttpResponseRedirect(request.path_info)
 
     else:
         return redirect(login)
