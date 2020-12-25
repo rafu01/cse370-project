@@ -147,7 +147,6 @@ def contact_us(request):
     customer = ""
     if request.user.is_authenticated:
         product_list = Products.objects.all()
-        manufacter_list = Manufacturer.objects.all()
         email = request.user.username
         customer = Customer.objects.get(email=email)
         try:
@@ -172,10 +171,10 @@ def contact_us(request):
             try:
                 message = UserMessage.objects.get(customers_id=customer.id)
             except:
-                return render(request, 'contact_us.html', {'customer': customer, 'products': product_list, 'manufacturers': manufacter_list})
+                return render(request, 'contact_us.html', {'customer': customer, 'products': product_list})
 
         context = {'customer': customer, 'message': message,
-                   'products': product_list, 'manufacturers': manufacter_list}
+                   'products': product_list}
         return render(request, 'contact_us.html', context)
     else:
         return redirect(login)
