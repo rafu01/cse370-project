@@ -8,6 +8,8 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+import os
+from .forms import *
 
 
 def index(request):
@@ -270,8 +272,10 @@ def createbooking(request):
         if request.method == "POST":
             credit = request.POST['credit']
             location = request.POST['location']
-            customer.credit_info = credit
-            customer.location = location
+            if credit is not "":
+                customer.credit_info = credit
+            if location is not "":
+                customer.location = location
             customer.save()
             return redirect(profile)
         else:
@@ -287,8 +291,48 @@ def profile(request):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-        booking = Booking.objects.filter(customers=customer)
+        booking = Booking.objects.filter(
+            customers=customer).order_by('date').reverse()
         context = {'customer': customer, 'booking': booking}
         return render(request, 'profile.html', context)
+    else:
+        return redirect(login)
+
+
+def updateprofile(request):
+    customer = ""
+    if request.user.is_authenticated:
+        email = request.user.username
+        customer = Customer.objects.get(email=email)
+        booking = Booking.objects.filter(
+            customers=customer).order_by('date').reverse()
+        if request.method == "POST":
+            fullname = request.POST.get('fullname', default=customer.name)
+            email = request.POST.get('email', default=customer.email)
+            phone = request.POST.get('phone', default=customer.phone)
+            address = request.POST.get('address', default=customer.location)
+            credit = request.POST.get('credit', default=customer.credit_info)
+            password = request.POST.get('password', default=customer.password)
+            if fullname is not "":
+                customer.name = fullname
+            if email is not "":
+                customer.email = email
+                request.user.username = email
+            if phone is not "":
+                customer.phone = phone
+            if address is not "":
+                customer.location = address
+            if credit is not "":
+                customer.credit_info = credit
+            if password is not "":
+                customer.password = password
+                request.user.password = password
+            customer.save()
+            request.user.save()
+            context = {'customer': customer, 'booking': booking}
+            return render(request, 'profile.html', context)
+        else:
+            context = {'customer': customer, 'booking': booking}
+            return render(request, 'profile.html', context)
     else:
         return redirect(login)

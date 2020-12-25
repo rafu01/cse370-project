@@ -24,5 +24,6 @@ urlpatterns = [
     path('booking/<str:pk>', views.booking, name='booking'),
     path('profile', views.profile, name='profile'),
     path('createbooking', views.createbooking, name='createbooking'),
+    path('updateprofile', views.updateprofile, name='updateprofile'),
     # path(r'^booking/(?p<pk>\d+/)/$', views.booking_confirm, name='booking_confrim'),
 ]
