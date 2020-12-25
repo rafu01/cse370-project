@@ -82,7 +82,7 @@ cancel_discount_on_accessories.short_description = 'Cancel 10%% discount on sele
 
 
 class AccessoriesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year','manufacturers', 'price')
+    list_display = ('name', 'year','manufacturers', 'price','quantity')
     fieldsets = (
         ("Accessories Details",{
             "fields":(
@@ -111,6 +111,7 @@ class AccessoriesAdmin(admin.ModelAdmin):
             )
         })
     )
+    ordering = ['quantity']
     list_per_page = 10
     search_fields = ('name','year','price','manufacturers__name',)
     list_editable = ('price',)
