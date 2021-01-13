@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 import os
 from .forms import *
+import datetime
 
 
 def index(request):
@@ -134,7 +135,7 @@ def singlecar(request, pk):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-    context = {'product': product, 'customer': customer}
+    context = {'product': product, 'customer': customer,'year':int(product.year),'current_Year':int(datetime.datetime.now().strftime("%Y"))}
     return render(request, 'single-product.html', context)
 
 
@@ -144,7 +145,7 @@ def singleaccessory(request, pk):
     if request.user.is_authenticated:
         email = request.user.username
         customer = Customer.objects.get(email=email)
-    context = {'product': product, 'customer': customer}
+    context = {'product': product, 'customer': customer,'year':int(product.year),'current_Year':int(datetime.datetime.now().strftime("%Y"))}
     return render(request, 'single-product.html', context)
 
 

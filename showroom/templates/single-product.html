@@ -51,7 +51,9 @@
 				</div>
 			</div>
 			<div class="col-md-7">
-				<p class="newarrival text-center">NEW</p>
+				{% if year == current_Year %}<p class="newarrival text-center">NEW</p>
+				{% elif year > current_Year %} <p class="newarrival text-center" style="display: inline; padding: 5px">UPCOMING</p>
+				{% endif %}
 				<h2>
 					{{product.name}}
 				</h2>
@@ -61,7 +63,7 @@
 					</p>
 					<p><span style="font-weight: bold;">Status: </span>
 						{% if product.quantity == 0 %}<span style="color: #dc3545;">Out of Stock</span></p>
-					{% else %}<span style="color:#5bc0de;">Available</span></p>
+					{% else %}<span style="color:#849397;">Available</span></p>
 					{% endif %}
 					<p><span style="font-weight: bold;">Description:</span><br>{{product.description}}</p>
 					<p><span style="font-weight: bold;">Brand:</span> {{product.manufacturers}}</p>
@@ -81,9 +83,10 @@
 							</div>
 							&nbsp;&nbsp;
 							<div class="col-md-3" style="color: black;">
-								<button type="button" class="btn btn-warning" data-toggle="modal"
-									data-target="#exampleModalCenter">
-									Buy Now
+								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
+									{% if year > current_Year %} Preorder
+									{% else %} Buy Now
+									{% endif %}
 								</button>
 
 								<!-- Modal -->
