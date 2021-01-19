@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'gearupdb',
         'USER': 'postgres',
         'PASSWORD': '1234',
-        'HOST': 'gearup-bd.herokuapp.com/',
+        'HOST': 'gearup-bd.herokuapp.com',
     }
 }
 
