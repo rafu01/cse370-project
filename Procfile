@@ -1,0 +1,1 @@
+web: gunicorn car_showroom.wsgi --log-file -
