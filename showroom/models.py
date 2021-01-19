@@ -78,6 +78,9 @@ class Products(PolymorphicModel):
 
     customers = models.ManyToManyField('Customer', blank=True)
     bookings = models.ManyToManyField('Booking', blank=True)
+    status = models.ForeignKey(
+        'Status', on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return self.name
@@ -161,3 +164,11 @@ class UserMessage(models.Model):
 
     def __str__(self):
         return self.customers.name
+
+
+class Status(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+

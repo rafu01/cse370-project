@@ -81,6 +81,12 @@ def signup(request):
             messages.info(request, 'email already exists!')
             return redirect('signup')
         else:
+            if (password2 != password1):
+                messages.info(request, 'password did not match')
+                return redirect('signup')
+            if(len(password1)<7):
+                messages.info(request, 'password length must be at least 8')
+                return redirect('signup')
             user = Customer(password=password1, email=email,
                             name=name, phone=phone)
             user.save()
@@ -255,6 +261,8 @@ def booking(request, pk):
                           price=qty*product.price, product=product)
         booking.save()
         product.quantity -= qty
+        if(product.quantity==0):
+            product.status = Status.objects.get(id=1)
         product.bookings.add(booking)
         product.customers.add(customer)
         product.save()

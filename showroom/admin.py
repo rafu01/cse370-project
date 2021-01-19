@@ -134,6 +134,8 @@ class AccessoriesAdmin(admin.ModelAdmin):
                 'quantity',
             )
         }),
+        ("Status",
+         {"fields": ('status',)}),
         ("Others", {
             "fields": (
                 ('bookings', 'customers',),
@@ -178,6 +180,8 @@ class CarAdmin(admin.ModelAdmin):
                 'quantity',
             )
         }),
+        ("Status",
+         {"fields" : ('status',)}),
         ("Others", {
             "fields": (
                 ('bookings', 'customers',),
@@ -294,3 +298,10 @@ class UserMessageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserMessage, UserMessageAdmin)
+
+class StatusAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    fields = ['name']
+
+
+admin.site.register(Status, StatusAdmin)

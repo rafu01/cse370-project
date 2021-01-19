@@ -51,9 +51,7 @@
 				</div>
 			</div>
 			<div class="col-md-7">
-				{% if year == current_Year %}<p class="newarrival text-center">NEW</p>
-				{% elif year > current_Year %} <p class="newarrival text-center" style="display: inline; padding: 5px">UPCOMING</p>
-				{% endif %}
+				<p class="newarrival text-center" style="width:80px;padding: 5px; font-size:14px;border: none; border-radius: 10px;">{{product.status}}</p>
 				<h2>
 					{{product.name}}
 				</h2>
